@@ -21,4 +21,9 @@ class TextStyles {
       ),
     ],
   );
+
+  static TextStyle blueTextStyle = defaultStyle.copyWith(
+    color: const Color.fromRGBO(54, 60, 204, 1),
+    shadows: [],
+  );
 }

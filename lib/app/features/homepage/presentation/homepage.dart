@@ -17,6 +17,7 @@ class Homepage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(height: width * 0.090),
             Image.asset("assets/images/logo.png"),
             SizedBox(height: width * 0.030),
             CustomText(
@@ -34,7 +35,30 @@ class Homepage extends StatelessWidget {
                 Icons.play_arrow,
                 size: 40.2,
                 color: Colors.white,
+                shadows: <Shadow>[
+                  Shadow(
+                    offset: Offset(2.0, 2.0),
+                    blurRadius: 8.0,
+                    color: Color.fromARGB(100, 0, 0, 0),
+                  ),
+                  Shadow(
+                    offset: Offset(2.0, 2.0),
+                    blurRadius: 8.0,
+                    color: Color.fromARGB(100, 0, 0, 0),
+                  ),
+                ],
               ),
+              widthButton: width * 0.70,
+            ),
+            SizedBox(height: width * 0.04),
+            CustomButton(
+              onPressed: () {},
+              title: CustomText(
+                text: 'Configurações',
+                style: TextStyles.blueTextStyle,
+              ),
+              color: const Color.fromARGB(255, 255, 255, 255),
+              widthButton: width * 0.70,
             ),
           ],
         ),
