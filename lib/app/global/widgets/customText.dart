@@ -14,13 +14,15 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Text(text,
-            style: style.copyWith(
-              foreground: Paint()
-                ..style = PaintingStyle.stroke
-                ..strokeWidth = .8
-                ..color = const Color.fromARGB(207, 0, 0, 0),
-            )),
+        Text(
+          text,
+          style: style.copyWith(
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = .8
+              ..color = const Color.fromARGB(207, 0, 0, 0),
+          ),
+        ),
         // The text inside
         Text(text, style: style),
       ],

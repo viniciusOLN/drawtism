@@ -26,4 +26,24 @@ class TextStyles {
     color: const Color.fromRGBO(54, 60, 204, 1),
     shadows: [],
   );
+
+  static TextStyle whiteTextButtonStyle = defaultStyle.copyWith(
+    fontSize: sizeDefault * 25,
+  );
+
+  static TextStyle blueTextButtonStyle = blueTextStyle.copyWith(
+    fontSize: sizeDefault * 25,
+    shadows: const [
+      Shadow(
+        offset: Offset(2.0, 2.0),
+        blurRadius: 8.0,
+        color: Color.fromARGB(0, 0, 0, 0),
+      ),
+      Shadow(
+        offset: Offset(2.0, 2.0),
+        blurRadius: 8.0,
+        color: Color.fromARGB(0, 0, 0, 0),
+      ),
+    ],
+  );
 }

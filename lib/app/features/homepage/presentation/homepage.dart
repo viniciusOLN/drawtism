@@ -1,8 +1,11 @@
+import 'package:drawtism/app/features/homepage/presentation/widgets/custom_icon.dart';
+import 'package:drawtism/app/global/utils/colors.dart';
 import 'package:drawtism/app/global/utils/deviceUtils.dart';
-import 'package:drawtism/app/global/utils/textStyles.dart';
+import 'package:drawtism/app/global/utils/text_styles.dart';
 import 'package:drawtism/app/global/widgets/background.dart';
 import 'package:drawtism/app/global/widgets/customText.dart';
 import 'package:drawtism/app/global/widgets/default_button.dart';
+import 'package:drawtism/app/global/widgets/default_container.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
@@ -25,40 +28,26 @@ class Homepage extends StatelessWidget {
               style: TextStyles.defaultStyle,
             ),
             SizedBox(height: width * 0.15),
-            CustomButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/drawpage');
-              },
-              title: CustomText(text: 'JOGAR', style: TextStyles.defaultStyle),
-              color: const Color.fromRGBO(54, 60, 204, 1),
-              icon: const Icon(
-                Icons.play_arrow,
-                size: 40.2,
-                color: Colors.white,
-                shadows: <Shadow>[
-                  Shadow(
-                    offset: Offset(2.0, 2.0),
-                    blurRadius: 8.0,
-                    color: Color.fromARGB(100, 0, 0, 0),
-                  ),
-                  Shadow(
-                    offset: Offset(2.0, 2.0),
-                    blurRadius: 8.0,
-                    color: Color.fromARGB(100, 0, 0, 0),
-                  ),
-                ],
-              ),
-              widthButton: width * 0.70,
-            ),
-            SizedBox(height: width * 0.04),
-            CustomButton(
-              onPressed: () {},
-              title: CustomText(
-                text: 'Configurações',
-                style: TextStyles.blueTextStyle,
-              ),
-              color: const Color.fromARGB(255, 255, 255, 255),
-              widthButton: width * 0.70,
+            CustomContainer(
+              width: width * 0.65,
+              children: [
+                CustomButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/mode');
+                  },
+                  title: 'JOGAR',
+                  style: TextStyles.whiteTextButtonStyle,
+                  color: ColorStyle.buttonBlue,
+                  icon: CustomIcon(),
+                ),
+                SizedBox(height: width * 0.04),
+                CustomButton(
+                  onPressed: () {},
+                  title: 'Configurações',
+                  style: TextStyles.blueTextButtonStyle,
+                  color: ColorStyle.buttonWhite,
+                ),
+              ],
             ),
           ],
         ),
