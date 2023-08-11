@@ -22,48 +22,55 @@ class ChooseMode extends StatelessWidget {
         title: const Text('Voltar'),
       ),
       body: Background(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: width * 0.090),
-            Image.asset("assets/images/logo.png"),
-            SizedBox(height: width * 0.030),
-            CustomText(text: "Escolha um modo", style: TextStyles.defaultStyle),
-            SizedBox(height: width * 0.05),
-            CustomContainer(
-              width: width * 0.81,
-              children: [
-                CustomButton(
-                  onPressed: () {},
-                  title: 'Completar Formas',
-                  style: TextStyles.blueTextButtonStyle,
-                  color: ColorStyle.buttonWhite,
-                  imageUrl: 'assets/images/icons/shapes.png',
-                ),
-                SizedBox(height: width * 0.04),
-                CustomButton(
-                  onPressed: () {},
-                  title: 'Completar Frases',
-                  style: TextStyles.blueTextButtonStyle,
-                  color: ColorStyle.buttonWhite,
-                  imageUrl: 'assets/images/icons/letters.png',
-                ),
-                SizedBox(height: width * 0.05),
-                CustomText(
-                  text: "ou",
-                  style: TextStyles.defaultStyle,
-                ),
-                SizedBox(height: width * 0.05),
-                CustomButton(
-                  onPressed: () {},
-                  title: 'Tirar Foto',
-                  style: TextStyles.blueTextButtonStyle,
-                  color: ColorStyle.buttonWhite,
-                  imageUrl: 'assets/images/icons/cam.png',
-                ),
-              ],
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: width * 0.090),
+              Image.asset("assets/images/logo.png"),
+              SizedBox(height: width * 0.030),
+              CustomText(
+                  text: "Escolha um modo", style: TextStyles.defaultStyle),
+              SizedBox(height: width * 0.05),
+              CustomContainer(
+                width: width * 0.81,
+                children: [
+                  CustomButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/level');
+                    },
+                    title: 'Completar Formas',
+                    style: TextStyles.blueTextButtonStyle,
+                    color: ColorStyle.buttonWhite,
+                    imageUrl: 'assets/images/icons/shapes.png',
+                  ),
+                  SizedBox(height: width * 0.04),
+                  CustomButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/level');
+                    },
+                    title: 'Completar Frases',
+                    style: TextStyles.blueTextButtonStyle,
+                    color: ColorStyle.buttonWhite,
+                    imageUrl: 'assets/images/icons/letters.png',
+                  ),
+                  SizedBox(height: width * 0.05),
+                  CustomText(
+                    text: "ou",
+                    style: TextStyles.defaultStyle,
+                  ),
+                  SizedBox(height: width * 0.05),
+                  CustomButton(
+                    onPressed: () {},
+                    title: 'Tirar Foto',
+                    style: TextStyles.blueTextButtonStyle,
+                    color: ColorStyle.buttonWhite,
+                    imageUrl: 'assets/images/icons/cam.png',
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

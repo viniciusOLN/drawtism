@@ -181,16 +181,16 @@ class _DrawPageState extends State<CanvasPage> {
   }
 
   Widget buildColorToolbar() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         buildClearButton(),
-        Divider(
+        const Divider(
           height: 10.0,
         ),
         buildSaveButton(),
-        Divider(
+        const Divider(
           height: 20.0,
         ),
         buildColorButton(Colors.red),
