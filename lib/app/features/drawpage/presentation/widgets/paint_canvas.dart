@@ -1,47 +1,14 @@
-import 'package:drawtism/app/features/drawpage/domain/canvas_path.dart';
-import 'package:drawtism/app/features/drawpage/domain/drawing.dart';
-import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_bloc.dart';
-import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_event.dart';
-import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_state.dart';
-import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_bloc.dart';
-import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_event.dart';
-import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_state.dart';
-import 'package:drawtism/app/features/drawpage/presentation/widgets/color_button.dart';
-import 'package:drawtism/app/features/drawpage/presentation/widgets/row_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'app_painter.dart';
 
-class PaintModule extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: const Text('Voltar'),
-      ),
-      body: SingleChildScrollView(
-        child: Row(
-          children: [
-            Expanded(
-              child: ClipPath(
-                clipper: CanvasClipper(),
-                child: BlocBuilder<DrawingBloc, DrawingState>(
-                    builder: (ctx, state) {
-                  return PaintCanvas(
-                    initialdrawPoints: state.currentDrawing,
-                  );
-                }),
-              ),
-            ),
-            ColumnButtons(),
-          ],
-        ),
-      ),
-    );
-  }
-}
+import '../../domain/canvas_path.dart';
+import '../../domain/drawing.dart';
+import '../drawing_bloc/drawing_bloc.dart';
+import '../drawing_bloc/drawing_event.dart';
+import '../drawing_bloc/drawing_state.dart';
+import '../settings_bloc/settings_bloc.dart';
+import '../settings_bloc/settings_state.dart';
+import 'app_painter.dart';
 
 class PaintCanvas extends StatefulWidget {
   final List<CanvasPath> initialdrawPoints;
@@ -131,35 +98,15 @@ class _PaintCanvasState extends State<PaintCanvas> {
               onPanEnd: (det) => addLastPoint(),
               child: Container(
                 constraints: BoxConstraints(
-                  maxHeight: _size.height,
-                  maxWidth: _size.width,
+                  maxHeight: _size.height / 1.6,
+                  maxWidth: _size.width / 1.6,
                 ),
-                color: Colors.white,
+                color: Colors.transparent,
               ),
             ),
           ),
         );
       },
     );
-  }
-}
-
-class CanvasClipper extends CustomClipper<Path> {
-  @override
-  getClip(Size size) {
-    final _path = Path();
-    _path.moveTo(0, 0);
-    _path.lineTo(size.width, 0);
-
-    _path.lineTo(size.width, size.height);
-
-    _path.lineTo(0, size.height);
-    _path.close();
-    return _path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper oldClipper) {
-    return false;
   }
 }

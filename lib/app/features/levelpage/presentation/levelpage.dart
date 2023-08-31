@@ -1,12 +1,12 @@
-import 'package:drawtism/app/global/utils/colors.dart';
-import 'package:drawtism/app/global/widgets/default_container.dart';
 import 'package:flutter/material.dart';
 
+import '../../../global/utils/colors.dart';
 import '../../../global/utils/deviceUtils.dart';
 import '../../../global/utils/text_styles.dart';
 import '../../../global/widgets/background.dart';
 import '../../../global/widgets/customText.dart';
 import '../../../global/widgets/default_button.dart';
+import '../../../global/widgets/default_container.dart';
 
 class LevelPage extends StatelessWidget {
   const LevelPage({super.key});

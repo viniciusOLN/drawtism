@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_event.dart';
-import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_state.dart';
 
 import '../../domain/drawing.dart';
+import 'drawing_event.dart';
+import 'drawing_state.dart';
 
 class DrawingBloc extends Bloc<DrawingEvent, DrawingState> {
   DrawingBloc() : super(DrawingInitial(const []));

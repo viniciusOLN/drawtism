@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
-import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_event.dart';
-import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_state.dart';
+
 import 'package:flutter/material.dart';
+
+import 'settings_event.dart';
+import 'settings_state.dart';
 
 final Paint DEFAULT_PAINT = Paint()
   ..color = Colors.black

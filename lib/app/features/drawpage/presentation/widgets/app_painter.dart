@@ -1,9 +1,10 @@
 import 'dart:math' as math;
 import 'dart:ui';
 
-import 'package:drawtism/app/features/drawpage/domain/canvas_path.dart';
-import 'package:drawtism/app/features/drawpage/domain/drawing.dart';
 import 'package:flutter/material.dart';
+
+import '../../domain/canvas_path.dart';
+import '../../domain/drawing.dart';
 
 class AppPainter extends CustomPainter {
   final Drawing drawing;

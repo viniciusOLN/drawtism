@@ -1,4 +1,4 @@
-import 'package:drawtism/app/features/drawpage/domain/canvas_path.dart';
+import '../../domain/canvas_path.dart';
 
 abstract class DrawingEvent {
   const DrawingEvent();

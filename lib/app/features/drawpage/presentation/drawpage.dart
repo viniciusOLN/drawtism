@@ -1,21 +1,31 @@
-import 'package:drawtism/app/features/drawpage/presentation/canvaspage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'widgets/paint_module.dart';
 
 class DrawPage extends StatelessWidget {
   const DrawPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.immersive,
-    );
-
     return Scaffold(
-      backgroundColor: Colors.yellow[50],
-      body: const Column(
+      backgroundColor: Colors.white,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: const Text('Voltar'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CanvasPage(),
+          Text("Cubra as linhas e complete o desenho!"),
+          Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Image.asset("assets/images/challenges/challenge_1_1.png"),
+              PaintModule(),
+            ],
+          ),
         ],
       ),
     );

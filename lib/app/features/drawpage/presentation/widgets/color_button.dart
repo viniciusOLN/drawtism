@@ -1,8 +1,9 @@
-import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_bloc.dart';
-import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_event.dart';
-import 'package:drawtism/app/global/utils/generate_key.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../global/utils/generate_key.dart';
+import '../settings_bloc/settings_bloc.dart';
+import '../settings_bloc/settings_event.dart';
 
 class ColorButton extends StatefulWidget {
   Color color;

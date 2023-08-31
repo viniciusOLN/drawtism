@@ -1,7 +1,6 @@
 import 'package:drawtism/app/features/choosepage/presentation/choosepage.dart';
 import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_bloc.dart';
 import 'package:drawtism/app/features/drawpage/presentation/drawpage.dart';
-import 'package:drawtism/app/features/drawpage/presentation/paint_module.dart';
 import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_bloc.dart';
 import 'package:drawtism/app/features/homepage/presentation/homepage.dart';
 import 'package:drawtism/app/features/levelpage/presentation/levelpage.dart';
@@ -20,7 +19,7 @@ Map<String, Widget Function(BuildContext)> routes = {
           create: (_) => SettingsBloc(),
         ),
       ],
-      child: PaintModule(),
+      child: const DrawPage(),
     );
   },
   '/mode': (context) => const ChooseMode(),

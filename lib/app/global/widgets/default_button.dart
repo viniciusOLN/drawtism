@@ -1,5 +1,6 @@
-import 'package:drawtism/app/global/utils/deviceUtils.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/deviceUtils.dart';
 
 class CustomButton extends StatelessWidget {
   void Function() onPressed;
