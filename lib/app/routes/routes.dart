@@ -19,7 +19,7 @@ Map<String, Widget Function(BuildContext)> routes = {
           create: (_) => SettingsBloc(),
         ),
       ],
-      child: const DrawPage(),
+      child: DrawPage(),
     );
   },
   '/mode': (context) => const ChooseMode(),

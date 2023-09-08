@@ -1,5 +1,3 @@
-import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_bloc.dart';
-import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_event.dart';
 import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_bloc.dart';
 import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_event.dart';
 import 'package:drawtism/app/features/drawpage/presentation/widgets/color_button.dart';
@@ -16,9 +14,11 @@ class ColumnButtons extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         ColorButton(
+          tag: '1',
           color: Colors.black,
         ),
         ColorButton(
+          tag: '2',
           color: Colors.red,
         ),
         TextButton(
@@ -42,12 +42,6 @@ class ColumnButtons extends StatelessWidget {
                 .add(SettingsStrokeWidthChanged(0.5));
           },
           child: Text('+0.5'),
-        ),
-        TextButton(
-          onPressed: () => BlocProvider.of<DrawingBloc>(context).add(
-            Undo(),
-          ),
-          child: Text('desfazer'),
         ),
       ],
     );

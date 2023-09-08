@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 
-import '../../domain/drawing.dart';
+import '../widgets/drawing.dart';
 import 'drawing_event.dart';
 import 'drawing_state.dart';
 
@@ -25,7 +25,7 @@ class DrawingBloc extends Bloc<DrawingEvent, DrawingState> {
     } else if (event is Undo) {
       if (_drawing.canvasPaths.isNotEmpty) {
         yield DrawingLoading(_drawing.canvasPaths);
-        _drawing.canvasPaths.removeLast();
+        _drawing.canvasPaths.removeRange(0, _drawing.canvasPaths.length);
         yield DrawingLoaded(_drawing.canvasPaths);
       }
     }

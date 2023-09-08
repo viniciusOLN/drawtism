@@ -1,4 +1,4 @@
-import '../../domain/canvas_path.dart';
+import '../widgets/canvas_path.dart';
 
 abstract class DrawingState {
   DrawingState(this.currentDrawing);

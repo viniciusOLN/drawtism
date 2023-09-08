@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/canvas_path.dart';
-import '../../domain/drawing.dart';
+import 'canvas_path.dart';
+import 'drawing.dart';
 import '../drawing_bloc/drawing_bloc.dart';
 import '../drawing_bloc/drawing_event.dart';
 import '../drawing_bloc/drawing_state.dart';

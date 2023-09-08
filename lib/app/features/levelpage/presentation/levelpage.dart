@@ -1,3 +1,4 @@
+import 'package:drawtism/app/global/utils/levels.dart';
 import 'package:flutter/material.dart';
 
 import '../../../global/utils/colors.dart';
@@ -13,7 +14,6 @@ class LevelPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> levels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
     double width = DeviceUtils.width(context);
 
     return Scaffold(
@@ -43,7 +43,14 @@ class LevelPage extends StatelessWidget {
                     children: [
                       CustomButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/drawpage');
+                          Navigator.pushNamed(
+                            context,
+                            '/drawpage',
+                            arguments: {
+                              'level': levels[index - 1],
+                              'position': index - 1,
+                            },
+                          );
                         },
                         title: 'nível $index',
                         style: TextStyles.blueTextButtonStyle,

@@ -3,8 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../domain/canvas_path.dart';
-import '../../domain/drawing.dart';
+import 'canvas_path.dart';
+import 'drawing.dart';
 
 class AppPainter extends CustomPainter {
   final Drawing drawing;

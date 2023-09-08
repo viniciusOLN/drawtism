@@ -6,10 +6,12 @@ import '../settings_bloc/settings_bloc.dart';
 import '../settings_bloc/settings_event.dart';
 
 class ColorButton extends StatefulWidget {
+  String tag;
   Color color;
 
   ColorButton({
     super.key,
+    required this.tag,
     required this.color,
   });
 
@@ -20,11 +22,10 @@ class ColorButton extends StatefulWidget {
 class _ColorButtonState extends State<ColorButton> {
   @override
   Widget build(BuildContext context) {
-    String key = getRandomString(5);
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: FloatingActionButton(
-        key: Key(key),
+        heroTag: widget.tag,
         mini: true,
         backgroundColor: widget.color,
         onPressed: () => BlocProvider.of<SettingsBloc>(context).add(

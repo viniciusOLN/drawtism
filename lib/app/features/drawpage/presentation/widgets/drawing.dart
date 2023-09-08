@@ -1,4 +1,4 @@
-import 'package:drawtism/app/features/drawpage/domain/canvas_path.dart';
+import 'package:drawtism/app/features/drawpage/presentation/widgets/canvas_path.dart';
 
 class Drawing {
   final List<CanvasPath> canvasPaths;
