@@ -76,9 +76,9 @@ class ResultPage extends StatelessWidget {
                             'position': result!.nextLevel,
                           },
                         );
-                      } else {
-                        Navigator.pushNamed(context, '/level');
+                        return;
                       }
+                      Navigator.pushNamed(context, '/level');
                     },
                     title: 'Clique Aqui',
                     style: TextStyles.whiteTextButtonStyle,
