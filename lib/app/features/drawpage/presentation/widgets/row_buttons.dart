@@ -1,14 +1,21 @@
+import 'package:drawtism/app/features/drawpage/presentation/controllers/drawing_controller.dart';
 import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_bloc.dart';
 import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_event.dart';
 import 'package:drawtism/app/features/drawpage/presentation/widgets/color_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class ColumnButtons extends StatelessWidget {
-  const ColumnButtons({super.key});
+  DrawingPageController controller;
+  ColumnButtons({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final controllerReference = Get.find<DrawingPageController>();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -16,10 +23,12 @@ class ColumnButtons extends StatelessWidget {
         ColorButton(
           tag: '1',
           color: Colors.black,
+          controller: controller,
         ),
         ColorButton(
           tag: '2',
           color: Colors.red,
+          controller: controller,
         ),
         TextButton(
           onPressed: () => BlocProvider.of<SettingsBloc>(context).add(
@@ -31,8 +40,9 @@ class ColumnButtons extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            BlocProvider.of<SettingsBloc>(context)
-                .add(SettingsStrokeWidthChanged(-0.5));
+            BlocProvider.of<SettingsBloc>(context).add(
+              SettingsStrokeWidthChanged(-0.5),
+            );
           },
           child: Text('-0.5'),
         ),

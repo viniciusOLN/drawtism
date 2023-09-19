@@ -13,18 +13,20 @@ import 'package:get/get.dart';
 import 'widgets/paint_module.dart';
 
 class DrawPage extends StatelessWidget {
-  final controller = Get.lazyPut(
-    () => DrawingPageController(),
-  );
-  final controllerReference = Get.find<DrawingPageController>();
-
   DrawPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.lazyPut(
+      () => DrawingPageController(),
+    );
+    final controllerReference = Get.find<DrawingPageController>();
+
     double width = DeviceUtils.width(context);
     final level = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
+
+    controllerReference.currentLevel = level["position"];
 
     // print(level["level"].listTasks[level["position"]].title);
 
@@ -54,16 +56,19 @@ class DrawPage extends StatelessWidget {
                         .listTasks[controllerReference.currentDraw]
                         .urlImage,
                   ),
-                  PaintModule(),
+                  PaintModule(controller: controllerReference),
                 ],
               ),
               CustomContainer(
                 width: width * 0.81,
                 children: [
                   CustomButton(
-                    onPressed: () => BlocProvider.of<DrawingBloc>(context).add(
-                      Undo(),
-                    ),
+                    onPressed: () {
+                      controllerReference.attempts++;
+                      BlocProvider.of<DrawingBloc>(context).add(
+                        Undo(),
+                      );
+                    },
                     title: 'Apagar',
                     style: TextStyles.whiteTextButtonStyle,
                     color: ColorStyle.buttonRed,
@@ -76,7 +81,7 @@ class DrawPage extends StatelessWidget {
                 children: [
                   CustomButton(
                     onPressed: () {
-                      controllerReference.nextDraw();
+                      controllerReference.nextDraw(context);
                       BlocProvider.of<DrawingBloc>(context).add(
                         Undo(),
                       );

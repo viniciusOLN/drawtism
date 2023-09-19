@@ -1,5 +1,7 @@
+import 'package:drawtism/app/features/drawpage/presentation/controllers/drawing_controller.dart';
 import 'package:drawtism/app/global/utils/levels.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../global/utils/colors.dart';
 import '../../../global/utils/deviceUtils.dart';
@@ -43,6 +45,7 @@ class LevelPage extends StatelessWidget {
                     children: [
                       CustomButton(
                         onPressed: () {
+                          Get.delete<DrawingPageController>();
                           Navigator.pushNamed(
                             context,
                             '/drawpage',

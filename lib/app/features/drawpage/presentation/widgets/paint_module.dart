@@ -1,3 +1,4 @@
+import 'package:drawtism/app/features/drawpage/presentation/controllers/drawing_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,6 +9,12 @@ import 'paint_canvas.dart';
 import 'row_buttons.dart';
 
 class PaintModule extends StatelessWidget {
+  DrawingPageController controller;
+  PaintModule({
+    super.key,
+    required this.controller,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -23,7 +30,7 @@ class PaintModule extends StatelessWidget {
             }),
           ),
         ),
-        const ColumnButtons(),
+        ColumnButtons(controller: controller),
       ],
     );
   }
