@@ -16,7 +16,7 @@ class ColumnButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controllerReference = Get.find<DrawingPageController>();
-    return Column(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

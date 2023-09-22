@@ -1,4 +1,5 @@
 import 'package:drawtism/app/features/drawpage/presentation/controllers/drawing_controller.dart';
+import 'package:drawtism/app/global/utils/deviceUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,17 +10,18 @@ import 'paint_canvas.dart';
 import 'row_buttons.dart';
 
 class PaintModule extends StatelessWidget {
-  DrawingPageController controller;
   PaintModule({
     super.key,
-    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
+    double width = DeviceUtils.width(context);
     return Row(
       children: [
-        Expanded(
+        SizedBox(
+          width: width,
+          height: width / 1.1,
           child: ClipPath(
             clipper: CanvasClipper(),
             child:
@@ -30,7 +32,6 @@ class PaintModule extends StatelessWidget {
             }),
           ),
         ),
-        ColumnButtons(controller: controller),
       ],
     );
   }

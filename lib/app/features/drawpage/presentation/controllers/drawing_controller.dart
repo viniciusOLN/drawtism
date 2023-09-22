@@ -2,6 +2,12 @@ import 'package:drawtism/app/features/resultpage/presentation/domain/entities/re
 import 'package:drawtism/app/features/resultpage/presentation/resultpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:async';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'package:image_gallery_saver_v3/image_gallery_saver.dart';
 
 class DrawingPageController extends GetxController {
   int currentDraw = 0;
@@ -10,9 +16,12 @@ class DrawingPageController extends GetxController {
   int countUsedColors = 0;
   int limitPerLevel = 2;
   List listUsedColors = [];
+  late GlobalKey keyToImage;
 
-  void nextDraw(BuildContext context) {
+  void nextDraw(BuildContext context) async {
+    await save(keyToImage);
     if (currentDraw == limitPerLevel) {
+      // ignore: use_build_context_synchronously
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -29,5 +38,25 @@ class DrawingPageController extends GetxController {
     }
     currentDraw++;
     update(['board']);
+  }
+
+  Future<void> save(GlobalKey key) async {
+    try {
+      RenderRepaintBoundary boundary =
+          key.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      ui.Image image = await boundary.toImage();
+      ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+      Uint8List pngBytes = byteData!.buffer.asUint8List();
+      var saved = await ImageGallerySaver.saveImage(
+        pngBytes,
+        quality: 100,
+        name: DateTime.now().toIso8601String() + ".png",
+        isReturnImagePathOfIOS: true,
+      );
+      print(saved);
+    } catch (e) {
+      print(e);
+    }
   }
 }

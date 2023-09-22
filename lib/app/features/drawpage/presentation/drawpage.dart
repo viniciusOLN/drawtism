@@ -1,6 +1,8 @@
 import 'package:drawtism/app/features/drawpage/presentation/controllers/drawing_controller.dart';
 import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_bloc.dart';
 import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_event.dart';
+import 'package:drawtism/app/features/drawpage/presentation/widgets/row_buttons.dart';
+import 'package:drawtism/app/features/drawpage/presentation/widgets/widget_to_image.dart';
 import 'package:drawtism/app/global/utils/colors.dart';
 import 'package:drawtism/app/global/utils/deviceUtils.dart';
 import 'package:drawtism/app/global/utils/text_styles.dart';
@@ -21,7 +23,6 @@ class DrawPage extends StatelessWidget {
       () => DrawingPageController(),
     );
     final controllerReference = Get.find<DrawingPageController>();
-
     double width = DeviceUtils.width(context);
     final level = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
@@ -44,21 +45,28 @@ class DrawPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: width * 0.090),
-              Text(level["level"]
-                  .listTasks[controllerReference.currentDraw]
-                  .title),
-              Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  Image.asset(
-                    level["level"]
-                        .listTasks[controllerReference.currentDraw]
-                        .urlImage,
-                  ),
-                  PaintModule(controller: controllerReference),
-                ],
+              SizedBox(height: width * 0.190),
+              Text(
+                level["level"].listTasks[controllerReference.currentDraw].title,
               ),
+              SizedBox(height: width * 0.090),
+              WidgetToImage(builder: (key) {
+                controllerReference.keyToImage = key;
+                return Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    Image.asset(
+                      level["level"]
+                          .listTasks[controllerReference.currentDraw]
+                          .urlImage,
+                    ),
+                    PaintModule(),
+                  ],
+                );
+              }),
+              SizedBox(height: width * 0.090),
+              ColumnButtons(controller: controllerReference),
+              SizedBox(height: width * 0.090),
               CustomContainer(
                 width: width * 0.81,
                 children: [
