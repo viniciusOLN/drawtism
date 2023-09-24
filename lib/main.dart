@@ -1,5 +1,6 @@
 import 'package:drawtism/app/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'DrawTism',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',

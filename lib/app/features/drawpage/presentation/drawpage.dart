@@ -3,6 +3,7 @@ import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing
 import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_event.dart';
 import 'package:drawtism/app/features/drawpage/presentation/widgets/row_buttons.dart';
 import 'package:drawtism/app/features/drawpage/presentation/widgets/widget_to_image.dart';
+import 'package:drawtism/app/features/levelpage/presentation/levelpage.dart';
 import 'package:drawtism/app/global/utils/colors.dart';
 import 'package:drawtism/app/global/utils/deviceUtils.dart';
 import 'package:drawtism/app/global/utils/text_styles.dart';
@@ -37,6 +38,17 @@ class DrawPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text('Voltar'),
+        titleSpacing: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          color: Theme.of(context).iconTheme.color,
+          onPressed: () {
+            Get.to(() => const LevelPage());
+          },
+        ),
       ),
       body: GetBuilder<DrawingPageController>(
         id: 'board',

@@ -1,3 +1,4 @@
+import 'package:drawtism/app/features/choosepage/presentation/choosepage.dart';
 import 'package:drawtism/app/features/drawpage/presentation/controllers/drawing_controller.dart';
 import 'package:drawtism/app/global/utils/levels.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,16 @@ class LevelPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text('Voltar'),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          color: Theme.of(context).iconTheme.color,
+          onPressed: () {
+            Get.to(() => const ChooseMode());
+          },
+        ),
       ),
       body: Background(
         child: SingleChildScrollView(
