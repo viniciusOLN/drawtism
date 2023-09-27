@@ -30,15 +30,32 @@ class ColumnButtons extends StatelessWidget {
           color: Colors.red,
           controller: controller,
         ),
-        TextButton(
-          onPressed: () => BlocProvider.of<SettingsBloc>(context).add(
-            SettingsChanged(
-              Paint()..blendMode = BlendMode.clear,
-            ),
-          ),
-          child: Text('borracha'),
+        ColorButton(
+          tag: '3',
+          color: Color.fromARGB(255, 215, 86, 11),
+          controller: controller,
+        ),
+        ColorButton(
+          tag: '3',
+          color: Color.fromARGB(255, 0, 26, 255),
+          controller: controller,
+        ),
+        ColorButton(
+          tag: '3',
+          color: Color.fromARGB(255, 55, 245, 2),
+          controller: controller,
         ),
         TextButton(
+          onPressed: () {
+            Paint newPaint = Paint()..blendMode = BlendMode.clear;
+            newPaint.strokeWidth = 10;
+            BlocProvider.of<SettingsBloc>(context).add(
+              SettingsChanged(newPaint),
+            );
+          },
+          child: const Text('borracha'),
+        ),
+        /*TextButton(
           onPressed: () {
             BlocProvider.of<SettingsBloc>(context).add(
               SettingsStrokeWidthChanged(-0.5),
@@ -52,7 +69,7 @@ class ColumnButtons extends StatelessWidget {
                 .add(SettingsStrokeWidthChanged(0.5));
           },
           child: Text('+0.5'),
-        ),
+        ),*/
       ],
     );
   }

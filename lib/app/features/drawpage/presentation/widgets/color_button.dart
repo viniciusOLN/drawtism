@@ -37,12 +37,12 @@ class _ColorButtonState extends State<ColorButton> {
             widget.controller.listUsedColors.add(widget.tag);
           }
 
+          Paint newPaint = Paint()
+            ..color = widget.color
+            ..blendMode = BlendMode.srcOver;
+
           BlocProvider.of<SettingsBloc>(context).add(
-            SettingsChanged(
-              Paint()
-                ..color = widget.color
-                ..blendMode = BlendMode.srcOver,
-            ),
+            SettingsChanged(newPaint),
           );
         },
         child: Container(),

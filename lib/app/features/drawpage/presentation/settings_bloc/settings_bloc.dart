@@ -9,7 +9,7 @@ import 'settings_state.dart';
 
 final Paint DEFAULT_PAINT = Paint()
   ..color = Colors.black
-  ..strokeWidth = 2;
+  ..strokeWidth = 6;
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   Paint _currentPaint = DEFAULT_PAINT;
