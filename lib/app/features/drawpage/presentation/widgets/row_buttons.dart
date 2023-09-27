@@ -36,12 +36,12 @@ class ColumnButtons extends StatelessWidget {
           controller: controller,
         ),
         ColorButton(
-          tag: '3',
+          tag: '4',
           color: Color.fromARGB(255, 0, 26, 255),
           controller: controller,
         ),
         ColorButton(
-          tag: '3',
+          tag: '5',
           color: Color.fromARGB(255, 55, 245, 2),
           controller: controller,
         ),
