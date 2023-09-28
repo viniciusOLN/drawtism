@@ -60,8 +60,9 @@ class DrawPage extends StatelessWidget {
               SizedBox(height: width * 0.190),
               Text(
                 level["level"].listTasks[controllerReference.currentDraw].title,
+                style: TextStyles.blackTextGeneric,
+                textAlign: TextAlign.center,
               ),
-              SizedBox(height: width * 0.090),
               WidgetToImage(builder: (key) {
                 controllerReference.keyToImage = key;
                 return Stack(
@@ -76,7 +77,17 @@ class DrawPage extends StatelessWidget {
                   ],
                 );
               }),
-              SizedBox(height: width * 0.090),
+              GetBuilder<DrawingPageController>(
+                  id: 'color',
+                  builder: (_) {
+                    return Text(
+                      controllerReference.currentTextColor,
+                      style: TextStyles.blueTextGeneric.copyWith(
+                        color: controllerReference.currentColor,
+                      ),
+                    );
+                  }),
+              SizedBox(height: width * 0.060),
               ColumnButtons(controller: controllerReference),
               SizedBox(height: width * 0.090),
               CustomContainer(

@@ -47,6 +47,7 @@ class CustomButton extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             imageUrl != null
                 ? Image.asset(

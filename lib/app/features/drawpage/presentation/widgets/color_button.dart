@@ -2,7 +2,6 @@ import 'package:drawtism/app/features/drawpage/presentation/controllers/drawing_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../global/utils/generate_key.dart';
 import '../settings_bloc/settings_bloc.dart';
 import '../settings_bloc/settings_event.dart';
 
@@ -44,6 +43,8 @@ class _ColorButtonState extends State<ColorButton> {
           BlocProvider.of<SettingsBloc>(context).add(
             SettingsChanged(newPaint),
           );
+
+          widget.controller.selectedColor(widget.tag, widget.color);
         },
         child: Container(),
       ),

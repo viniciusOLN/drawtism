@@ -16,61 +16,64 @@ class ColumnButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controllerReference = Get.find<DrawingPageController>();
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ColorButton(
-          tag: '1',
-          color: Colors.black,
-          controller: controller,
-        ),
-        ColorButton(
-          tag: '2',
-          color: Colors.red,
-          controller: controller,
-        ),
-        ColorButton(
-          tag: '3',
-          color: Color.fromARGB(255, 215, 86, 11),
-          controller: controller,
-        ),
-        ColorButton(
-          tag: '4',
-          color: Color.fromARGB(255, 0, 26, 255),
-          controller: controller,
-        ),
-        ColorButton(
-          tag: '5',
-          color: Color.fromARGB(255, 55, 245, 2),
-          controller: controller,
-        ),
-        TextButton(
-          onPressed: () {
-            Paint newPaint = Paint()..blendMode = BlendMode.clear;
-            newPaint.strokeWidth = 10;
-            BlocProvider.of<SettingsBloc>(context).add(
-              SettingsChanged(newPaint),
-            );
-          },
-          child: const Text('borracha'),
-        ),
-        /*TextButton(
-          onPressed: () {
-            BlocProvider.of<SettingsBloc>(context).add(
-              SettingsStrokeWidthChanged(-0.5),
-            );
-          },
-          child: Text('-0.5'),
-        ),
-        TextButton(
-          onPressed: () {
-            BlocProvider.of<SettingsBloc>(context)
-                .add(SettingsStrokeWidthChanged(0.5));
-          },
-          child: Text('+0.5'),
-        ),*/
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ColorButton(
+            tag: 'preto',
+            color: Colors.black,
+            controller: controller,
+          ),
+          ColorButton(
+            tag: 'vermelho',
+            color: Colors.red,
+            controller: controller,
+          ),
+          ColorButton(
+            tag: 'laranja',
+            color: Color.fromARGB(255, 215, 86, 11),
+            controller: controller,
+          ),
+          ColorButton(
+            tag: 'azul',
+            color: Color.fromARGB(255, 0, 26, 255),
+            controller: controller,
+          ),
+          ColorButton(
+            tag: 'verde',
+            color: Color.fromARGB(255, 55, 245, 2),
+            controller: controller,
+          ),
+          TextButton(
+            onPressed: () {
+              Paint newPaint = Paint()..blendMode = BlendMode.clear;
+              newPaint.strokeWidth = 10;
+              BlocProvider.of<SettingsBloc>(context).add(
+                SettingsChanged(newPaint),
+              );
+            },
+            child: const Text('borracha'),
+          ),
+          /*TextButton(
+            onPressed: () {
+              BlocProvider.of<SettingsBloc>(context).add(
+                SettingsStrokeWidthChanged(-0.5),
+              );
+            },
+            child: Text('-0.5'),
+          ),
+          TextButton(
+            onPressed: () {
+              BlocProvider.of<SettingsBloc>(context)
+                  .add(SettingsStrokeWidthChanged(0.5));
+            },
+            child: Text('+0.5'),
+          ),*/
+        ],
+      ),
     );
   }
 }

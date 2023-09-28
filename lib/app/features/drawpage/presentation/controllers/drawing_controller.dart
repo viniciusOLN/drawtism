@@ -17,6 +17,8 @@ class DrawingPageController extends GetxController {
   int limitPerLevel = 2;
   List listUsedColors = [];
   late GlobalKey keyToImage;
+  String currentTextColor = "Escolha uma cor!";
+  Color currentColor = Color.fromRGBO(54, 60, 204, 1);
 
   void nextDraw(BuildContext context) async {
     await save(keyToImage);
@@ -58,5 +60,11 @@ class DrawingPageController extends GetxController {
     } catch (e) {
       print(e);
     }
+  }
+
+  void selectedColor(String tag, Color color) {
+    currentTextColor = "Cor selecionada: $tag";
+    currentColor = color;
+    update(['color']);
   }
 }
