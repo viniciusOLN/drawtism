@@ -1,9 +1,9 @@
+import 'package:drawtism/app/features/drawpage/domain/entities/level.dart';
 import 'package:drawtism/app/features/resultpage/presentation/domain/entities/result_entity.dart';
 import 'package:drawtism/app/features/resultpage/presentation/resultpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:async';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -66,5 +66,21 @@ class DrawingPageController extends GetxController {
     currentTextColor = "Cor selecionada: $tag";
     currentColor = color;
     update(['color']);
+  }
+
+  String formatedTime(int time) {
+    return time < 10 ? '0$time' : time.toString();
+  }
+
+  String getCurrentTime() {
+    DateTime now = DateTime.now();
+    return "${formatedTime(now.hour)}:${formatedTime(now.minute)}:${formatedTime(now.second)}";
+  }
+
+  void infos(Level level) {
+    level.finalTime = getCurrentTime();
+    print("titulo: ${level.title}");
+    print("tentativas: ${level.attempts}");
+    print("tempo:${level.initialTime} - ${level.finalTime}");
   }
 }

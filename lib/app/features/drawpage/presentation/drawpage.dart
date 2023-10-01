@@ -1,3 +1,4 @@
+import 'package:drawtism/app/features/drawpage/domain/entities/level.dart';
 import 'package:drawtism/app/features/drawpage/presentation/controllers/drawing_controller.dart';
 import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_bloc.dart';
 import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_event.dart';
@@ -27,7 +28,8 @@ class DrawPage extends StatelessWidget {
     double width = DeviceUtils.width(context);
     final level = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
-
+    Level currentLevel = level['level'].listTasks[0] as Level;
+    currentLevel.attempts = 0;
     controllerReference.currentLevel = level["position"];
 
     // print(level["level"].listTasks[level["position"]].title);
@@ -53,6 +55,7 @@ class DrawPage extends StatelessWidget {
       body: GetBuilder<DrawingPageController>(
         id: 'board',
         builder: (_) {
+          currentLevel.initialTime = controllerReference.getCurrentTime();
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,6 +98,7 @@ class DrawPage extends StatelessWidget {
                 children: [
                   CustomButton(
                     onPressed: () {
+                      currentLevel.attempts = (currentLevel.attempts! + 1);
                       controllerReference.attempts++;
                       BlocProvider.of<DrawingBloc>(context).add(
                         Undo(),
@@ -112,10 +116,12 @@ class DrawPage extends StatelessWidget {
                 children: [
                   CustomButton(
                     onPressed: () {
+                      controllerReference.infos(currentLevel);
                       controllerReference.nextDraw(context);
                       BlocProvider.of<DrawingBloc>(context).add(
                         Undo(),
                       );
+                      currentLevel.attempts = 0;
                     },
                     title: 'Continuar',
                     style: TextStyles.whiteTextButtonStyle,
