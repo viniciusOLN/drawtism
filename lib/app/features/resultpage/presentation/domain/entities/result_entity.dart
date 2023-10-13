@@ -1,5 +1,5 @@
 class InfosResult {
-  int attempts;
+  Map<int, dynamic> attempts;
   int usedColors;
   int nextLevel;
 

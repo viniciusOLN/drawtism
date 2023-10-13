@@ -26,7 +26,6 @@ class ResultPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: width * 0.090),
               Image.asset("assets/images/logo.png"),
               SizedBox(height: width * 0.030),
               CustomText(
@@ -39,11 +38,34 @@ class ResultPage extends StatelessWidget {
               ),
               SizedBox(height: width * 0.06),
               CustomText(
-                text: "Tentativas",
+                text: "Quantidade de tentativas",
+                style: TextStyles.defaultStyle,
+              ),
+              SizedBox(height: width * 0.06),
+              CustomText(
+                text: "1ª tarefa",
                 style: TextStyles.defaultStyle,
               ),
               CustomText(
-                text: result!.attempts.toString(),
+                text: result!.attempts[1].toString(),
+                style: TextStyles.defaultStyle,
+              ),
+              SizedBox(height: width * 0.04),
+              CustomText(
+                text: "2ª tarefa",
+                style: TextStyles.defaultStyle,
+              ),
+              CustomText(
+                text: result!.attempts[2].toString(),
+                style: TextStyles.defaultStyle,
+              ),
+              SizedBox(height: width * 0.04),
+              CustomText(
+                text: "3ª tarefa",
+                style: TextStyles.defaultStyle,
+              ),
+              CustomText(
+                text: result!.attempts[3].toString(),
                 style: TextStyles.defaultStyle,
               ),
               SizedBox(height: width * 0.04),
@@ -84,6 +106,7 @@ class ResultPage extends StatelessWidget {
                     style: TextStyles.whiteTextButtonStyle,
                     color: ColorStyle.buttonBlue,
                   ),
+                  SizedBox(height: width * 0.06),
                 ],
               ),
             ],

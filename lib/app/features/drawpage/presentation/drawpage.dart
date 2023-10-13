@@ -100,7 +100,7 @@ class DrawPage extends StatelessWidget {
                   CustomButton(
                     onPressed: () {
                       currentLevel.attempts = (currentLevel.attempts! + 1);
-                      controllerReference.attempts++;
+                      controllerReference.registerAttempt();
                       BlocProvider.of<DrawingBloc>(context).add(
                         Undo(),
                       );

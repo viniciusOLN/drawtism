@@ -12,11 +12,15 @@ import 'package:image_gallery_saver_v3/image_gallery_saver.dart';
 class DrawingPageController extends GetxController {
   int currentDraw = 0;
   int currentLevel = 0;
-  int attempts = 0;
   int countUsedColors = 0;
   int limitPerLevel = 2;
   bool isPainted = false;
   List listUsedColors = [];
+  Map<int, dynamic> attempts = {
+    1: 0,
+    2: 0,
+    3: 0,
+  };
   late GlobalKey keyToImage;
   String currentTextColor = "Escolha uma cor!";
   Color currentColor = Color.fromRGBO(54, 60, 204, 1);
@@ -87,5 +91,13 @@ class DrawingPageController extends GetxController {
   void changeButton(bool state) {
     isPainted = state;
     update(['nextButton']);
+  }
+
+  void registerAttempt() {
+    if (isPainted) {
+      int attempt = attempts[currentDraw + 1];
+      attempts[currentDraw + 1] = attempt + 1;
+      changeButton(false);
+    }
   }
 }
