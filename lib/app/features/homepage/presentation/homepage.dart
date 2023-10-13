@@ -44,7 +44,9 @@ class Homepage extends StatelessWidget {
                   ),
                   SizedBox(height: width * 0.04),
                   CustomButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/config');
+                    },
                     title: 'Configurações',
                     style: TextStyles.blueTextButtonStyle,
                     color: ColorStyle.buttonWhite,

@@ -29,7 +29,7 @@ class ChooseMode extends StatelessWidget {
           ),
           color: Theme.of(context).iconTheme.color,
           onPressed: () {
-            Get.to(() => const Homepage());
+            Get.to(() => Homepage());
           },
         ),
       ),

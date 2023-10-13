@@ -41,6 +41,7 @@ dependencies:
   path_provider: ^2.0.2
   camera_camera: ^2.0.1
   image_picker: ^0.7.4
+  audioplayers: ^5.2.0
   
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,7 @@ flutter:
     - assets/images/
     - assets/images/icons/
     - assets/images/challenges/
+    - assets/music/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

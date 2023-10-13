@@ -1,4 +1,5 @@
 import 'package:drawtism/app/features/choosepage/presentation/choosepage.dart';
+import 'package:drawtism/app/features/configpage/presentation/configuration_page.dart';
 import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_bloc.dart';
 import 'package:drawtism/app/features/drawpage/presentation/drawpage.dart';
 import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_bloc.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
-  '/': (context) => const Homepage(),
+  '/': (context) => Homepage(),
   '/drawpage': (context) {
     return MultiBlocProvider(
       providers: [
@@ -28,4 +29,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   '/level': (context) => const LevelPage(),
   '/result': (context) => ResultPage(),
   '/photo': (context) => const PhotoPage(),
+  '/config': (context) => ConfigurationPage(),
 };
