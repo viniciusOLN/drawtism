@@ -81,15 +81,16 @@ class DrawPage extends StatelessWidget {
                 );
               }),
               GetBuilder<DrawingPageController>(
-                  id: 'color',
-                  builder: (_) {
-                    return Text(
-                      controllerReference.currentTextColor,
-                      style: TextStyles.blueTextGeneric.copyWith(
-                        color: controllerReference.currentColor,
-                      ),
-                    );
-                  }),
+                id: 'color',
+                builder: (_) {
+                  return Text(
+                    controllerReference.currentTextColor,
+                    style: TextStyles.blueTextGeneric.copyWith(
+                      color: controllerReference.currentColor,
+                    ),
+                  );
+                },
+              ),
               SizedBox(height: width * 0.060),
               ColumnButtons(controller: controllerReference),
               SizedBox(height: width * 0.090),
@@ -111,23 +112,32 @@ class DrawPage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: width * 0.025),
-              CustomContainer(
-                width: width * 0.81,
-                children: [
-                  CustomButton(
-                    onPressed: () {
-                      controllerReference.infos(currentLevel);
-                      controllerReference.nextDraw(context);
-                      BlocProvider.of<DrawingBloc>(context).add(
-                        Undo(),
-                      );
-                      currentLevel.attempts = 0;
-                    },
-                    title: 'Continuar',
-                    style: TextStyles.whiteTextButtonStyle,
-                    color: ColorStyle.buttonBlue,
-                  ),
-                ],
+              GetBuilder<DrawingPageController>(
+                id: 'nextButton',
+                builder: (_) {
+                  return CustomContainer(
+                    width: width * 0.81,
+                    children: [
+                      CustomButton(
+                        onPressed: controllerReference.isPainted
+                            ? () {
+                                controllerReference.infos(currentLevel);
+                                controllerReference.nextDraw(context);
+                                BlocProvider.of<DrawingBloc>(context).add(
+                                  Undo(),
+                                );
+                                currentLevel.attempts = 0;
+                              }
+                            : () {},
+                        title: 'Continuar',
+                        style: TextStyles.whiteTextButtonStyle,
+                        color: controllerReference.isPainted
+                            ? ColorStyle.buttonBlue
+                            : ColorStyle.buttonDisabled,
+                      ),
+                    ],
+                  );
+                },
               ),
             ],
           );

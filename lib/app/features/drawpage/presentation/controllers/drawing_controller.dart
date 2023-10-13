@@ -15,12 +15,14 @@ class DrawingPageController extends GetxController {
   int attempts = 0;
   int countUsedColors = 0;
   int limitPerLevel = 2;
+  bool isPainted = false;
   List listUsedColors = [];
   late GlobalKey keyToImage;
   String currentTextColor = "Escolha uma cor!";
   Color currentColor = Color.fromRGBO(54, 60, 204, 1);
 
   void nextDraw(BuildContext context) async {
+    changeButton(false);
     await save(keyToImage);
     if (currentDraw == limitPerLevel) {
       // ignore: use_build_context_synchronously
@@ -68,9 +70,7 @@ class DrawingPageController extends GetxController {
     update(['color']);
   }
 
-  String formatedTime(int time) {
-    return time < 10 ? '0$time' : time.toString();
-  }
+  String formatedTime(int time) => time < 10 ? '0$time' : time.toString();
 
   String getCurrentTime() {
     DateTime now = DateTime.now();
@@ -82,5 +82,10 @@ class DrawingPageController extends GetxController {
     print("titulo: ${level.title}");
     print("tentativas: ${level.attempts}");
     print("tempo:${level.initialTime} - ${level.finalTime}");
+  }
+
+  void changeButton(bool state) {
+    isPainted = state;
+    update(['nextButton']);
   }
 }
