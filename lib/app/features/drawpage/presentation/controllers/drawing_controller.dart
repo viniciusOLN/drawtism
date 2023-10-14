@@ -1,3 +1,4 @@
+import 'package:drawtism/app/features/drawpage/domain/entities/email_sender.dart';
 import 'package:drawtism/app/features/drawpage/domain/entities/level.dart';
 import 'package:drawtism/app/features/resultpage/presentation/domain/entities/result_entity.dart';
 import 'package:drawtism/app/features/resultpage/presentation/resultpage.dart';
@@ -16,6 +17,7 @@ class DrawingPageController extends GetxController {
   int limitPerLevel = 2;
   bool isPainted = false;
   List listUsedColors = [];
+  List<String> listPathImages = [];
   Map<int, dynamic> attempts = {
     1: 0,
     2: 0,
@@ -27,6 +29,7 @@ class DrawingPageController extends GetxController {
 
   void nextDraw(BuildContext context) async {
     changeButton(false);
+    sendEmail();
     await save(keyToImage);
     if (currentDraw == limitPerLevel) {
       // ignore: use_build_context_synchronously
@@ -62,6 +65,7 @@ class DrawingPageController extends GetxController {
         name: DateTime.now().toIso8601String() + ".png",
         isReturnImagePathOfIOS: true,
       );
+      //listPathImages.add(saved);
       print(saved);
     } catch (e) {
       print(e);
@@ -99,5 +103,16 @@ class DrawingPageController extends GetxController {
       attempts[currentDraw + 1] = attempt + 1;
       changeButton(false);
     }
+  }
+
+  void sendEmail() {
+    EmailSender sender = EmailSender(
+      body: 'body',
+      subject: 'subject',
+      recipients: ['recipients'],
+      attachmentPaths: ['attachmentPaths'],
+    );
+
+    sender.sendEmail();
   }
 }
