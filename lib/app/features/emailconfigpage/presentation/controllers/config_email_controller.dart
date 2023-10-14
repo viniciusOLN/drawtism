@@ -7,6 +7,10 @@ class ConfigEmailController extends GetxController {
   TextEditingController controllerUsername = TextEditingController();
 
   void setEmailInformations() async {
+    if (controllerEmail.text.isEmpty || controllerUsername.text.isEmpty) {
+      return;
+    }
+
     final prefs = await SharedPreferences.getInstance();
 
     await prefs.setString("email", controllerEmail.text);
