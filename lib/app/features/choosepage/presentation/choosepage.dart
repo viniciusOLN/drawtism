@@ -14,7 +14,7 @@ import '../../../global/widgets/default_button.dart';
 class ChooseMode extends StatelessWidget {
   const ChooseMode({super.key});
 
-  void redirectPage() async {
+  void redirectPage(String route) async {
     final prefs = await SharedPreferences.getInstance();
 
     String username = prefs.getString("username") ?? "";
@@ -23,7 +23,7 @@ class ChooseMode extends StatelessWidget {
     if (username == "" || email == "") {
       Get.toNamed("/emailconfig");
     } else {
-      Get.toNamed("/photo");
+      Get.toNamed(route);
     }
   }
 
@@ -63,7 +63,7 @@ class ChooseMode extends StatelessWidget {
                 children: [
                   CustomButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/level');
+                      redirectPage("/level");
                     },
                     title: 'Completar Formas',
                     style: TextStyles.blueTextButtonStyle,
@@ -88,7 +88,7 @@ class ChooseMode extends StatelessWidget {
                   SizedBox(height: width * 0.05),
                   CustomButton(
                     onPressed: () {
-                      redirectPage();
+                      redirectPage("/photo");
                     },
                     title: 'Tirar Foto',
                     style: TextStyles.blueTextButtonStyle,
