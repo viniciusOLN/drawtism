@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:drawtism/app/features/drawpage/domain/entities/email_sender.dart';
+import 'package:drawtism/app/features/drawpage/domain/entities/infos_email.dart';
 import 'package:drawtism/app/features/drawpage/domain/entities/level.dart';
 import 'package:drawtism/app/features/resultpage/presentation/domain/entities/result_entity.dart';
 import 'package:drawtism/app/features/resultpage/presentation/resultpage.dart';
@@ -9,6 +12,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:image_gallery_saver_v3/image_gallery_saver.dart';
+import 'package:sendgrid_mailer/sendgrid_mailer.dart';
 
 class DrawingPageController extends GetxController {
   int currentDraw = 0;
@@ -17,11 +21,19 @@ class DrawingPageController extends GetxController {
   int limitPerLevel = 2;
   bool isPainted = false;
   List listUsedColors = [];
+  String toEmail = "vinicius853o@gmail.com";
+  String username = "vinicius";
   List<String> listPathImages = [];
+  List<String> listIdentifyTask = [];
   Map<int, dynamic> attempts = {
     1: 0,
     2: 0,
     3: 0,
+  };
+  Map<int, dynamic> duration = {
+    1: {'init': '', 'end': ''},
+    2: {'init': '', 'end': ''},
+    3: {'init': '', 'end': ''},
   };
   late GlobalKey keyToImage;
   String currentTextColor = "Escolha uma cor!";
@@ -29,7 +41,6 @@ class DrawingPageController extends GetxController {
 
   void nextDraw(BuildContext context) async {
     changeButton(false);
-    sendEmail();
     await save(keyToImage);
     if (currentDraw == limitPerLevel) {
       // ignore: use_build_context_synchronously
@@ -48,6 +59,7 @@ class DrawingPageController extends GetxController {
       return;
     }
     currentDraw++;
+    currentLevel++;
     update(['board']);
   }
 
@@ -59,14 +71,13 @@ class DrawingPageController extends GetxController {
       ByteData? byteData =
           await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List pngBytes = byteData!.buffer.asUint8List();
-      var saved = await ImageGallerySaver.saveImage(
-        pngBytes,
-        quality: 100,
-        name: DateTime.now().toIso8601String() + ".png",
-        isReturnImagePathOfIOS: true,
-      );
-      //listPathImages.add(saved);
-      print(saved);
+      listPathImages.add(base64Encode(pngBytes));
+      // var saved = await ImageGallerySaver.saveImage(
+      //   pngBytes,
+      //   quality: 100,
+      //   name: DateTime.now().toIso8601String() + ".png",
+      //   isReturnImagePathOfIOS: true,
+      // );
     } catch (e) {
       print(e);
     }
@@ -87,9 +98,9 @@ class DrawingPageController extends GetxController {
 
   void infos(Level level) {
     level.finalTime = getCurrentTime();
-    print("titulo: ${level.title}");
-    print("tentativas: ${level.attempts}");
-    print("tempo:${level.initialTime} - ${level.finalTime}");
+    listIdentifyTask.add(level.identifyTask);
+    duration[currentDraw + 1]['init'] = level.initialTime;
+    duration[currentDraw + 1]['end'] = level.finalTime;
   }
 
   void changeButton(bool state) {
@@ -106,13 +117,35 @@ class DrawingPageController extends GetxController {
   }
 
   void sendEmail() {
-    EmailSender sender = EmailSender(
-      body: 'body',
-      subject: 'subject',
-      recipients: ['recipients'],
-      attachmentPaths: ['attachmentPaths'],
+    if (toEmail.isEmpty || username.isEmpty) {
+      return;
+    }
+
+    InfosEmail infos = InfosEmail(
+      username: username,
+      attempts: attempts.length,
+      listAttempts: attempts,
+      timeDurations: duration,
     );
 
-    sender.sendEmail();
+    EmailSender emailSender = EmailSender(
+      subject: "Aquarela Autista - $username ${DateTime.now()}",
+      toAddress: toEmail,
+      attachments: List.generate(
+        listPathImages.length,
+        (index) => Attachment(
+          listPathImages[index],
+          "${listIdentifyTask[index]}.jpg",
+        ),
+      ),
+      contents: [
+        Content(
+          "text/html",
+          EmailSender.templateEmail(infos),
+        ),
+      ],
+    );
+
+    emailSender.sendEmail();
   }
 }

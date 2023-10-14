@@ -17,6 +17,11 @@ class ResultPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.lazyPut(
+      () => DrawingPageController(),
+    );
+    final controllerReference = Get.find<DrawingPageController>();
+    controllerReference.sendEmail();
     double width = DeviceUtils.width(context);
 
     return Scaffold(
