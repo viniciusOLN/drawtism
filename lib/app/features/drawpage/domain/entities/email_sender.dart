@@ -37,7 +37,7 @@ class EmailSender {
     final mailer = Mailer(
       "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",
     );
-    final toAddress = Address("vinicius853o@gmail.com");
+    final toAddress = Address("vinicius8532o@gmail.com");
     final fromAddress = Address("viniciusnascimento@aluno.uespi.br");
     final content = Content('text/plain', 'teste');
     final subject = "Teste";
