@@ -3,6 +3,7 @@ import 'package:drawtism/app/features/configpage/presentation/configuration_page
 import 'package:drawtism/app/features/drawpage/presentation/drawing_bloc/drawing_bloc.dart';
 import 'package:drawtism/app/features/drawpage/presentation/drawpage.dart';
 import 'package:drawtism/app/features/drawpage/presentation/settings_bloc/settings_bloc.dart';
+import 'package:drawtism/app/features/emailconfigpage/presentation/email_config.dart';
 import 'package:drawtism/app/features/homepage/presentation/homepage.dart';
 import 'package:drawtism/app/features/levelpage/presentation/levelpage.dart';
 import 'package:drawtism/app/features/photopage/presentation/photopage.dart';
@@ -29,5 +30,6 @@ Map<String, Widget Function(BuildContext)> routes = {
   '/level': (context) => const LevelPage(),
   '/result': (context) => ResultPage(),
   '/photo': (context) => const PhotoPage(),
-  '/config': (context) => ConfigurationPage(),
+  '/config': (context) => const ConfigurationPage(),
+  '/emailconfig': (context) => ConfigEmailPage(),
 };

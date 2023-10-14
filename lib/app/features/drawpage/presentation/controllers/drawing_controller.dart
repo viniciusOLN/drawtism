@@ -11,8 +11,8 @@ import 'dart:async';
 import 'dart:ui' as ui;
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:image_gallery_saver_v3/image_gallery_saver.dart';
 import 'package:sendgrid_mailer/sendgrid_mailer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DrawingPageController extends GetxController {
   int currentDraw = 0;
@@ -21,8 +21,6 @@ class DrawingPageController extends GetxController {
   int limitPerLevel = 2;
   bool isPainted = false;
   List listUsedColors = [];
-  String toEmail = "vinicius853o@gmail.com";
-  String username = "vinicius";
   List<String> listPathImages = [];
   List<String> listIdentifyTask = [];
   Map<int, dynamic> attempts = {
@@ -72,12 +70,6 @@ class DrawingPageController extends GetxController {
           await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List pngBytes = byteData!.buffer.asUint8List();
       listPathImages.add(base64Encode(pngBytes));
-      // var saved = await ImageGallerySaver.saveImage(
-      //   pngBytes,
-      //   quality: 100,
-      //   name: DateTime.now().toIso8601String() + ".png",
-      //   isReturnImagePathOfIOS: true,
-      // );
     } catch (e) {
       print(e);
     }
@@ -116,8 +108,12 @@ class DrawingPageController extends GetxController {
     }
   }
 
-  void sendEmail() {
-    if (toEmail.isEmpty || username.isEmpty) {
+  void sendEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    String username = prefs.getString("username") ?? "";
+    String email = prefs.getString("email") ?? "";
+
+    if (username.isEmpty || email.isEmpty) {
       return;
     }
 
@@ -130,7 +126,7 @@ class DrawingPageController extends GetxController {
 
     EmailSender emailSender = EmailSender(
       subject: "Aquarela Autista - $username ${DateTime.now()}",
-      toAddress: toEmail,
+      toAddress: email,
       attachments: List.generate(
         listPathImages.length,
         (index) => Attachment(

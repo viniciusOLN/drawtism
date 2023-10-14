@@ -94,6 +94,15 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                     style: TextStyles.blueTextButtonStyle,
                     color: ColorStyle.buttonWhite,
                   ),
+                  SizedBox(height: width * 0.04),
+                  CustomButton(
+                    onPressed: () {
+                      Get.toNamed("/emailconfig");
+                    },
+                    title: "Configurar Email",
+                    style: TextStyles.whiteTextButtonStyle,
+                    color: ColorStyle.buttonBlue,
+                  ),
                 ],
               ),
             ],

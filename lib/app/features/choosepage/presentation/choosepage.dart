@@ -3,6 +3,7 @@ import 'package:drawtism/app/global/utils/colors.dart';
 import 'package:drawtism/app/global/widgets/default_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../global/utils/deviceUtils.dart';
 import '../../../global/utils/text_styles.dart';
@@ -12,6 +13,19 @@ import '../../../global/widgets/default_button.dart';
 
 class ChooseMode extends StatelessWidget {
   const ChooseMode({super.key});
+
+  void redirectPage() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    String username = prefs.getString("username") ?? "";
+    String email = prefs.getString("email") ?? "";
+
+    if (username == "" || email == "") {
+      Get.toNamed("/emailconfig");
+    } else {
+      Get.toNamed("/photo");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +88,7 @@ class ChooseMode extends StatelessWidget {
                   SizedBox(height: width * 0.05),
                   CustomButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/photo');
+                      redirectPage();
                     },
                     title: 'Tirar Foto',
                     style: TextStyles.blueTextButtonStyle,
