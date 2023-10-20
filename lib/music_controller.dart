@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 class MusicController extends GetxController {
   AudioPlayer playerThemeSong = AudioPlayer();
+  bool isPlaying = true;
 
   void playThemeSong() {
     playerThemeSong.play(

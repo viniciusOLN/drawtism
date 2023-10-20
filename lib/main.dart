@@ -23,9 +23,19 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   );
   final controller = Get.find<MusicController>();
 
+  void checkAudioIsPlaying() async {
+    final prefs = await SharedPreferences.getInstance();
+    bool isPlaying = prefs.getBool("music") ?? true;
+    if (isPlaying) {
+      controller.playThemeSong();
+      controller.isPlaying = true;
+    }
+    controller.isPlaying = false;
+  }
+
   @override
   void initState() {
-    controller.playThemeSong();
+    checkAudioIsPlaying();
     WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
@@ -36,7 +46,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       controller.playerThemeSong.pause();
     } else if (state == AppLifecycleState.resumed) {
       final prefs = await SharedPreferences.getInstance();
-      bool isPlaying = await prefs.getBool("music") ?? true;
+      bool isPlaying = prefs.getBool("music") ?? true;
       if (isPlaying) {
         controller.playerThemeSong.resume();
       }

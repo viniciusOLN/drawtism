@@ -23,8 +23,12 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
     () => ConfigPageController(),
   );
   final controllerConfig = Get.find<ConfigPageController>();
-  bool isPlayMusic = false;
-  String titleButton = "Pausar Música";
+
+  @override
+  void initState() {
+    controllerConfig.setButtonTitle();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,24 +74,29 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                         () => MusicController(),
                       );
                       final controller = Get.find<MusicController>();
-                      if (!isPlayMusic) {
+                      if (!controllerConfig.isPlaying) {
                         controllerConfig.setAudio(false);
                         controller.playerThemeSong.pause();
-                        isPlayMusic = true;
+                        controllerConfig.isPlaying = true;
                         setState(() {
-                          titleButton = "Tocar Música";
+                          controllerConfig.titleButton = "Tocar Música";
                         });
                       } else {
                         controllerConfig.setAudio(true);
-                        controller.playerThemeSong.resume();
-                        isPlayMusic = false;
+                        if (!controller.isPlaying) {
+                          controller.playThemeSong();
+                        } else {
+                          controller.playerThemeSong.resume();
+                        }
+
+                        controllerConfig.isPlaying = false;
                         setState(() {
-                          titleButton = "Pausar Música";
+                          controllerConfig.titleButton = "Pausar Música";
                         });
                       }
                     },
-                    title: titleButton,
-                    icon: !isPlayMusic
+                    title: controllerConfig.titleButton,
+                    icon: !controllerConfig.isPlaying
                         ? const Icon(
                             Icons.pause,
                             color: Colors.red,

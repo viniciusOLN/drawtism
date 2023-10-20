@@ -3,11 +3,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ConfigPageController extends GetxController {
   bool isPlaying = false;
-  String titleButton = "Pausar Música";
+  String titleButton = "";
 
-  void setAudio(bool) async {
+  @override
+  void onInit() async {
+    super.onInit();
+    isPlaying = await getAudio();
+    setButtonTitle();
+  }
+
+  void setButtonTitle() {
+    titleButton = isPlaying ? "Pausar Música" : "Tocar Música";
+  }
+
+  void setAudio(bool state) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool("music", bool);
+    await prefs.setBool("music", state);
   }
 
   Future<bool> getAudio() async {
