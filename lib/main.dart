@@ -3,6 +3,7 @@ import 'package:drawtism/app/routes/routes.dart';
 import 'package:drawtism/music_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,11 +31,15 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.paused) {
       controller.playerThemeSong.pause();
     } else if (state == AppLifecycleState.resumed) {
-      controller.playerThemeSong.resume();
+      final prefs = await SharedPreferences.getInstance();
+      bool isPlaying = await prefs.getBool("music") ?? true;
+      if (isPlaying) {
+        controller.playerThemeSong.resume();
+      }
     } else if (state == AppLifecycleState.detached) {
       controller.playerThemeSong.resume();
     }

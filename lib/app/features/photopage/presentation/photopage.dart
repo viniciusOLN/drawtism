@@ -1,13 +1,16 @@
 import 'package:camera_camera/camera_camera.dart';
 import 'package:drawtism/app/features/choosepage/presentation/choosepage.dart';
 import 'package:drawtism/app/features/photopage/presentation/controllers/photo_controller.dart';
-import 'package:drawtism/app/features/photopage/previewpage/presentation/preview_page.dart';
+import 'package:drawtism/app/features/photopagedraw/photo_page_draw.dart';
 import 'package:drawtism/app/global/utils/deviceUtils.dart';
+import 'package:drawtism/app/global/utils/levels_photos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PhotoPage extends StatelessWidget {
-  const PhotoPage({super.key});
+  String? urlImage;
+  String? currentTime;
+  PhotoPage({this.urlImage, this.currentTime, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class PhotoPage extends StatelessWidget {
           ),
           color: Theme.of(context).iconTheme.color,
           onPressed: () {
-            Get.to(() => ChooseMode());
+            Get.back();
           },
         ),
       ),
@@ -37,8 +40,8 @@ class PhotoPage extends StatelessWidget {
         children: [
           CameraCamera(
             onFile: (file) {
-              print(file);
-              controllerReference.showPreview(context, file);
+              controllerReference.innitialTime = currentTime!;
+              controllerReference.showPreview(context, file, urlImage!);
             },
           ),
           Align(

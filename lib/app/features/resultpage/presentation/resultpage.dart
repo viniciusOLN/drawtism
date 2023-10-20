@@ -111,6 +111,16 @@ class ResultPage extends StatelessWidget {
                     style: TextStyles.whiteTextButtonStyle,
                     color: ColorStyle.buttonBlue,
                   ),
+                  SizedBox(height: width * 0.02),
+                  CustomButton(
+                    onPressed: () {
+                      Get.delete<DrawingPageController>();
+                      Navigator.pushNamed(context, '/mode');
+                    },
+                    title: 'Sair',
+                    style: TextStyles.whiteTextButtonStyle,
+                    color: ColorStyle.buttonRed,
+                  ),
                   SizedBox(height: width * 0.06),
                 ],
               ),

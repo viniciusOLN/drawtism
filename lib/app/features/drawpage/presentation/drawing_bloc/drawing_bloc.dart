@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:drawtism/app/features/drawpage/presentation/controllers/drawing_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../widgets/drawing.dart';
@@ -21,7 +22,8 @@ class DrawingBloc extends Bloc<DrawingEvent, DrawingState> {
     DrawingEvent event,
   ) async* {
     if (event is UpdateDrawing) {
-      if (_drawing.canvasPaths.isNotEmpty) {
+      if (_drawing.canvasPaths.isNotEmpty &&
+          controller.listUsedColors.isNotEmpty) {
         controller.changeButton(true);
       }
       yield DrawingLoading(_drawing.canvasPaths);

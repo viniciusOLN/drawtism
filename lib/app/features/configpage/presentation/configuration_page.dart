@@ -1,3 +1,4 @@
+import 'package:drawtism/app/features/configpage/presentation/controllers/config_page_controller.dart';
 import 'package:drawtism/app/features/homepage/presentation/homepage.dart';
 import 'package:drawtism/app/global/utils/colors.dart';
 import 'package:drawtism/app/global/utils/deviceUtils.dart';
@@ -18,6 +19,10 @@ class ConfigurationPage extends StatefulWidget {
 }
 
 class _ConfigurationPageState extends State<ConfigurationPage> {
+  final controllerReferencea = Get.lazyPut(
+    () => ConfigPageController(),
+  );
+  final controllerConfig = Get.find<ConfigPageController>();
   bool isPlayMusic = false;
   String titleButton = "Pausar Música";
 
@@ -66,12 +71,14 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                       );
                       final controller = Get.find<MusicController>();
                       if (!isPlayMusic) {
+                        controllerConfig.setAudio(false);
                         controller.playerThemeSong.pause();
                         isPlayMusic = true;
                         setState(() {
                           titleButton = "Tocar Música";
                         });
                       } else {
+                        controllerConfig.setAudio(true);
                         controller.playerThemeSong.resume();
                         isPlayMusic = false;
                         setState(() {

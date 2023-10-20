@@ -1,10 +1,13 @@
 import 'dart:convert';
 
-import 'package:drawtism/app/features/drawpage/domain/entities/email_sender.dart';
-import 'package:drawtism/app/features/drawpage/domain/entities/infos_email.dart';
-import 'package:drawtism/app/features/drawpage/domain/entities/level.dart';
-import 'package:drawtism/app/features/resultpage/presentation/domain/entities/result_entity.dart';
-import 'package:drawtism/app/features/resultpage/presentation/resultpage.dart';
+import 'package:drawtism/app/global/utils/formate_date.dart';
+
+import '../../domain/entities/email_sender.dart';
+import '../../domain/entities/infos_email.dart';
+import '../../domain/entities/level.dart';
+import '../../../resultpage/presentation/domain/entities/result_entity.dart';
+import '../../../resultpage/presentation/resultpage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:async';
@@ -81,13 +84,6 @@ class DrawingPageController extends GetxController {
     update(['color']);
   }
 
-  String formatedTime(int time) => time < 10 ? '0$time' : time.toString();
-
-  String getCurrentTime() {
-    DateTime now = DateTime.now();
-    return "${formatedTime(now.hour)}:${formatedTime(now.minute)}:${formatedTime(now.second)}";
-  }
-
   void infos(Level level) {
     level.finalTime = getCurrentTime();
     listIdentifyTask.add(level.identifyTask);
@@ -110,6 +106,7 @@ class DrawingPageController extends GetxController {
 
   void sendEmail() async {
     final prefs = await SharedPreferences.getInstance();
+
     String username = prefs.getString("username") ?? "";
     String email = prefs.getString("email") ?? "";
 

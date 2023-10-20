@@ -27,9 +27,9 @@ Map<String, Widget Function(BuildContext)> routes = {
     );
   },
   '/mode': (context) => const ChooseMode(),
-  '/level': (context) => const LevelPage(),
+  '/level': (context) => LevelPage(),
   '/result': (context) => ResultPage(),
-  '/photo': (context) => const PhotoPage(),
-  '/config': (context) => const ConfigurationPage(),
-  '/emailconfig': (context) => ConfigEmailPage(),
+  '/photo': (context) => PhotoPage(),
+  '/config': (context) => ConfigurationPage(),
+  '/emailconfig': (context) => const ConfigEmailPage(),
 };

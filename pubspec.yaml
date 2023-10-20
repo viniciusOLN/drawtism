@@ -72,6 +72,7 @@ flutter:
     - assets/images/
     - assets/images/icons/
     - assets/images/challenges/
+    - assets/images/photo_challenges/
     - assets/music/
 
   # An image asset can refer to one or more resolution-specific "variants", see

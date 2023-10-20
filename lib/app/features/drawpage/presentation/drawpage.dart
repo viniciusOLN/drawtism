@@ -7,6 +7,8 @@ import 'package:drawtism/app/features/drawpage/presentation/widgets/widget_to_im
 import 'package:drawtism/app/features/levelpage/presentation/levelpage.dart';
 import 'package:drawtism/app/global/utils/colors.dart';
 import 'package:drawtism/app/global/utils/deviceUtils.dart';
+import 'package:drawtism/app/global/utils/formate_date.dart';
+import 'package:drawtism/app/global/utils/levels.dart';
 import 'package:drawtism/app/global/utils/text_styles.dart';
 import 'package:drawtism/app/global/widgets/default_button.dart';
 import 'package:drawtism/app/global/widgets/default_container.dart';
@@ -48,14 +50,19 @@ class DrawPage extends StatelessWidget {
           ),
           color: Theme.of(context).iconTheme.color,
           onPressed: () {
-            Get.to(() => const LevelPage());
+            Get.to(
+              () => LevelPage(
+                levels: levels,
+                isDrawPage: true,
+              ),
+            );
           },
         ),
       ),
       body: GetBuilder<DrawingPageController>(
         id: 'board',
         builder: (_) {
-          currentLevel.initialTime = controllerReference.getCurrentTime();
+          currentLevel.initialTime = getCurrentTime();
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

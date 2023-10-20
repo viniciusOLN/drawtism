@@ -1,5 +1,8 @@
 import 'package:drawtism/app/features/choosepage/presentation/choosepage.dart';
+import 'package:drawtism/app/features/drawpage/domain/entities/level.dart';
+import 'package:drawtism/app/features/drawpage/domain/entities/levels.dart';
 import 'package:drawtism/app/features/drawpage/presentation/controllers/drawing_controller.dart';
+import 'package:drawtism/app/features/photopagedraw/photo_page_draw.dart';
 import 'package:drawtism/app/global/utils/levels.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +16,10 @@ import '../../../global/widgets/default_button.dart';
 import '../../../global/widgets/default_container.dart';
 
 class LevelPage extends StatelessWidget {
-  const LevelPage({super.key});
+  List<Level>? levelsPhotoPhage;
+  List<Levels>? levels;
+  bool? isDrawPage;
+  LevelPage({this.levels, this.isDrawPage, this.levelsPhotoPhage, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +45,7 @@ class LevelPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: width * 0.090),
               Image.asset("assets/images/logo.png"),
@@ -50,22 +57,33 @@ class LevelPage extends StatelessWidget {
               SizedBox(height: width * 0.06),
               CustomContainer(
                 width: width * 0.76,
-                children: List.generate(levels.length, (index) {
+                children: List.generate(
+                    isDrawPage! ? levels!.length : levelsPhotoPhage!.length,
+                    (index) {
                   index = index + 1;
                   return Column(
                     children: [
                       CustomButton(
-                        onPressed: () {
-                          Get.delete<DrawingPageController>();
-                          Navigator.pushNamed(
-                            context,
-                            '/drawpage',
-                            arguments: {
-                              'level': levels[index - 1],
-                              'position': index - 1,
-                            },
-                          );
-                        },
+                        onPressed: isDrawPage!
+                            ? () {
+                                Get.delete<DrawingPageController>();
+                                Navigator.pushNamed(
+                                  context,
+                                  '/drawpage',
+                                  arguments: {
+                                    'level': levels![index - 1],
+                                    'position': index - 1,
+                                  },
+                                );
+                              }
+                            : () {
+                                Get.to(
+                                  () => PhotoPageDraw(
+                                    level: levelsPhotoPhage![index - 1],
+                                    indexLevel: index - 1,
+                                  ),
+                                );
+                              },
                         title: 'nível $index',
                         style: TextStyles.blueTextButtonStyle,
                         color: ColorStyle.buttonWhite,

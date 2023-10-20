@@ -1,5 +1,8 @@
 import 'package:drawtism/app/features/homepage/presentation/homepage.dart';
+import 'package:drawtism/app/features/levelpage/presentation/levelpage.dart';
 import 'package:drawtism/app/global/utils/colors.dart';
+import 'package:drawtism/app/global/utils/levels.dart';
+import 'package:drawtism/app/global/utils/levels_photos.dart';
 import 'package:drawtism/app/global/widgets/default_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +17,7 @@ import '../../../global/widgets/default_button.dart';
 class ChooseMode extends StatelessWidget {
   const ChooseMode({super.key});
 
-  void redirectPage(String route) async {
+  void redirectPhotoPage() async {
     final prefs = await SharedPreferences.getInstance();
 
     String username = prefs.getString("username") ?? "";
@@ -23,7 +26,12 @@ class ChooseMode extends StatelessWidget {
     if (username == "" || email == "") {
       Get.toNamed("/emailconfig");
     } else {
-      Get.toNamed(route);
+      Get.to(
+        () => LevelPage(
+          levelsPhotoPhage: levelsPhoto,
+          isDrawPage: false,
+        ),
+      );
     }
   }
 
@@ -57,13 +65,18 @@ class ChooseMode extends StatelessWidget {
               SizedBox(height: width * 0.030),
               CustomText(
                   text: "Escolha um modo", style: TextStyles.defaultStyle),
-              SizedBox(height: width * 0.05),
+              SizedBox(height: width * 0.12),
               CustomContainer(
                 width: width * 0.81,
                 children: [
                   CustomButton(
                     onPressed: () {
-                      redirectPage("/level");
+                      Get.to(
+                        () => LevelPage(
+                          levels: levels,
+                          isDrawPage: true,
+                        ),
+                      );
                     },
                     title: 'Completar Formas',
                     style: TextStyles.blueTextButtonStyle,
@@ -71,24 +84,24 @@ class ChooseMode extends StatelessWidget {
                     imageUrl: 'assets/images/icons/shapes.png',
                   ),
                   SizedBox(height: width * 0.04),
-                  CustomButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/level');
-                    },
-                    title: 'Completar Frases',
-                    style: TextStyles.blueTextButtonStyle,
-                    color: ColorStyle.buttonWhite,
-                    imageUrl: 'assets/images/icons/letters.png',
-                  ),
-                  SizedBox(height: width * 0.05),
+                  // CustomButton(
+                  //   onPressed: () {
+                  //     Navigator.pushNamed(context, '/level');
+                  //   },
+                  //   title: 'Completar Frases',
+                  //   style: TextStyles.blueTextButtonStyle,
+                  //   color: ColorStyle.buttonWhite,
+                  //   imageUrl: 'assets/images/icons/letters.png',
+                  // ),
+                  // SizedBox(height: width * 0.05),
                   CustomText(
                     text: "ou",
                     style: TextStyles.defaultStyle,
                   ),
-                  SizedBox(height: width * 0.05),
+                  SizedBox(height: width * 0.04),
                   CustomButton(
                     onPressed: () {
-                      redirectPage("/photo");
+                      redirectPhotoPage();
                     },
                     title: 'Tirar Foto',
                     style: TextStyles.blueTextButtonStyle,
