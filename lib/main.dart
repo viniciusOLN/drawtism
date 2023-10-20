@@ -28,9 +28,10 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     bool isPlaying = prefs.getBool("music") ?? true;
     if (isPlaying) {
       controller.playThemeSong();
+      controller.isPlaying = false;
+    } else {
       controller.isPlaying = true;
     }
-    controller.isPlaying = false;
   }
 
   @override

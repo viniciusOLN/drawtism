@@ -23,10 +23,19 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
     () => ConfigPageController(),
   );
   final controllerConfig = Get.find<ConfigPageController>();
+  final controllerReference = Get.lazyPut(
+    () => MusicController(),
+  );
+  final controller = Get.find<MusicController>();
+
+  void teste() async {
+    controllerConfig.isPlaying = await controllerConfig.getAudio();
+  }
 
   @override
   void initState() {
     controllerConfig.setButtonTitle();
+    teste();
     super.initState();
   }
 
@@ -70,14 +79,10 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                   SizedBox(height: width * 0.04),
                   CustomButton(
                     onPressed: () {
-                      final controllerReference = Get.lazyPut(
-                        () => MusicController(),
-                      );
-                      final controller = Get.find<MusicController>();
-                      if (!controllerConfig.isPlaying) {
+                      if (controllerConfig.isPlaying) {
                         controllerConfig.setAudio(false);
                         controller.playerThemeSong.pause();
-                        controllerConfig.isPlaying = true;
+                        controllerConfig.isPlaying = false;
                         setState(() {
                           controllerConfig.titleButton = "Tocar Música";
                         });
@@ -88,15 +93,14 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                         } else {
                           controller.playerThemeSong.resume();
                         }
-
-                        controllerConfig.isPlaying = false;
+                        controllerConfig.isPlaying = true;
                         setState(() {
                           controllerConfig.titleButton = "Pausar Música";
                         });
                       }
                     },
                     title: controllerConfig.titleButton,
-                    icon: !controllerConfig.isPlaying
+                    icon: controllerConfig.isPlaying
                         ? const Icon(
                             Icons.pause,
                             color: Colors.red,

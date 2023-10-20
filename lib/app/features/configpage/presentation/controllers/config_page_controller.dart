@@ -13,7 +13,7 @@ class ConfigPageController extends GetxController {
   }
 
   void setButtonTitle() {
-    titleButton = isPlaying ? "Pausar Música" : "Tocar Música";
+    titleButton = !isPlaying ? "Pausar Música" : "Tocar Música";
   }
 
   void setAudio(bool state) async {
