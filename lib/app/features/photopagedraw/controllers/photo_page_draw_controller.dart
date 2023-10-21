@@ -15,11 +15,10 @@ class PhotoPageDrawController extends GetxController {
   final controller = Get.find<MusicController>();
 
   void speak(String text) async {
-    controller.playerThemeSong.setVolume(0);
+    await controller.playerThemeSong.setVolume(0);
     FlutterTts flutterTts = FlutterTts();
 
     await flutterTts.setVolume(1.0);
-    await flutterTts.setPitch(2);
     await flutterTts.setLanguage('pt-BR');
     await flutterTts.speak(text);
 

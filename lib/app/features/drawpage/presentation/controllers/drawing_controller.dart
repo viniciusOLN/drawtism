@@ -149,16 +149,15 @@ class DrawingPageController extends GetxController {
   }
 
   void speak(String text) async {
-    controller.playerThemeSong.setVolume(0);
+    await controller.playerThemeSong.setVolume(0);
     FlutterTts flutterTts = FlutterTts();
 
     await flutterTts.setVolume(1.0);
-    await flutterTts.setPitch(2);
     await flutterTts.setLanguage('pt-BR');
-    await flutterTts.speak(text);
-
-    Timer(Duration(seconds: 5), () {
-      controller.playerThemeSong.setVolume(1);
+    await flutterTts.speak(text).then((value) {
+      Timer(Duration(seconds: 5), () {
+        controller.playerThemeSong.setVolume(1);
+      });
     });
   }
 }
