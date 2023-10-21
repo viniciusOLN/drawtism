@@ -18,4 +18,16 @@ class ConfigEmailController extends GetxController {
 
     Get.toNamed("/mode");
   }
+
+  Future<String> getEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    return prefs.getString("email") ?? "";
+  }
+
+  Future<String> getUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    return prefs.getString("username") ?? "";
+  }
 }

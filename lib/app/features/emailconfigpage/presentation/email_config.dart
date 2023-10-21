@@ -10,16 +10,36 @@ import 'package:drawtism/app/global/widgets/default_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ConfigEmailPage extends StatelessWidget {
+class ConfigEmailPage extends StatefulWidget {
   const ConfigEmailPage({super.key});
+
+  @override
+  State<ConfigEmailPage> createState() => _ConfigEmailPageState();
+}
+
+class _ConfigEmailPageState extends State<ConfigEmailPage> {
+  final controllerReference = Get.lazyPut(
+    () => ConfigEmailController(),
+  );
+  final controller = Get.find<ConfigEmailController>();
+
+  void loadInfosIfExist() async {
+    controller.controllerEmail.text = await controller.getEmail();
+    controller.controllerUsername.text = await controller.getUsername();
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      loadInfosIfExist();
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     double width = DeviceUtils.width(context);
-    final controllerReference = Get.lazyPut(
-      () => ConfigEmailController(),
-    );
-    final controller = Get.find<ConfigEmailController>();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
