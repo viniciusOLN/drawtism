@@ -5,7 +5,7 @@ class TextStyles {
 
   static TextStyle defaultStyle = TextStyle(
     fontFamily: 'Roboto',
-    fontSize: sizeDefault * 30,
+    fontSize: sizeDefault * 26,
     fontWeight: FontWeight.bold,
     color: Colors.white,
     shadows: const <Shadow>[
@@ -28,11 +28,11 @@ class TextStyles {
   );
 
   static TextStyle whiteTextButtonStyle = defaultStyle.copyWith(
-    fontSize: sizeDefault * 25,
+    fontSize: sizeDefault * 22,
   );
 
   static TextStyle blueTextButtonStyle = blueTextStyle.copyWith(
-    fontSize: sizeDefault * 25,
+    fontSize: sizeDefault * 22,
     shadows: const [
       Shadow(
         offset: Offset(2.0, 2.0),
@@ -48,7 +48,7 @@ class TextStyles {
   );
 
   static TextStyle blueTextGeneric = blueTextStyle.copyWith(
-    fontSize: sizeDefault * 20,
+    fontSize: sizeDefault * 18,
   );
 
   static TextStyle blackTextGeneric = blueTextGeneric.copyWith(

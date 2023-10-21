@@ -20,14 +20,18 @@ import 'package:get/get.dart';
 import 'widgets/paint_module.dart';
 
 class DrawPage extends StatelessWidget {
+  final controller = Get.lazyPut(
+    () => DrawingPageController(),
+  );
+  final controllerReference = Get.find<DrawingPageController>();
   DrawPage({super.key});
+
+  void stopVoice() async {
+    await controllerReference.flutterTts.stop();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.lazyPut(
-      () => DrawingPageController(),
-    );
-    final controllerReference = Get.find<DrawingPageController>();
     double width = DeviceUtils.width(context);
     final level = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
@@ -50,6 +54,7 @@ class DrawPage extends StatelessWidget {
           ),
           color: Theme.of(context).iconTheme.color,
           onPressed: () {
+            stopVoice();
             Get.to(
               () => LevelPage(
                 levels: levels,

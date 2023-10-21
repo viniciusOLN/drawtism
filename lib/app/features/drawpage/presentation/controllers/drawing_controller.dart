@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:drawtism/app/features/configpage/presentation/controllers/config_page_controller.dart';
 import 'package:drawtism/app/global/utils/formate_date.dart';
 import 'package:drawtism/music_controller.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -40,13 +41,19 @@ class DrawingPageController extends GetxController {
   };
   late GlobalKey keyToImage;
   String currentTextColor = "Escolha uma cor!";
-  Color currentColor = Color.fromRGBO(54, 60, 204, 1);
+  Color currentColor = const Color.fromRGBO(54, 60, 204, 1);
   final controllerReference = Get.lazyPut(
     () => MusicController(),
   );
   final controller = Get.find<MusicController>();
+  final controllerReferencea = Get.lazyPut(
+    () => ConfigPageController(),
+  );
+  final controllerConfig = Get.find<ConfigPageController>();
+  FlutterTts flutterTts = FlutterTts();
 
   void nextDraw(BuildContext context) async {
+    await flutterTts.stop();
     changeButton(false);
     await save(keyToImage);
     if (currentDraw == limitPerLevel) {
@@ -149,15 +156,17 @@ class DrawingPageController extends GetxController {
   }
 
   void speak(String text) async {
-    await controller.playerThemeSong.setVolume(0);
-    FlutterTts flutterTts = FlutterTts();
+    await controller.playerThemeSong.pause();
 
     await flutterTts.setVolume(1.0);
+    await flutterTts.setSpeechRate(0.5);
     await flutterTts.setLanguage('pt-BR');
     await flutterTts.speak(text).then((value) {
-      Timer(Duration(seconds: 5), () {
-        controller.playerThemeSong.setVolume(1);
-      });
+      if (controllerConfig.isPlaying) {
+        Timer(const Duration(seconds: 5), () {
+          controller.playerThemeSong.resume();
+        });
+      }
     });
   }
 }

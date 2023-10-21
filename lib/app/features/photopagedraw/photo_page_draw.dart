@@ -21,14 +21,19 @@ class PhotoPageDraw extends StatelessWidget {
     required this.indexLevel,
     super.key,
   });
+  final controllerReference = Get.lazyPut(
+    () => PhotoPageDrawController(),
+  );
+  final controller = Get.find<PhotoPageDrawController>();
+
+  void stopVoice() async {
+    await controller.flutterTts.stop();
+  }
 
   @override
   Widget build(BuildContext context) {
     double width = DeviceUtils.width(context);
-    final controllerReference = Get.lazyPut(
-      () => PhotoPageDrawController(),
-    );
-    final controller = Get.find<PhotoPageDrawController>();
+
     controller.currentTime = getCurrentTime();
     controller.speak(level.title);
     return Scaffold(
@@ -45,6 +50,7 @@ class PhotoPageDraw extends StatelessWidget {
           ),
           color: Theme.of(context).iconTheme.color,
           onPressed: () {
+            stopVoice();
             Get.to(
               () => LevelPage(
                 levelsPhotoPhage: levelsPhoto,
