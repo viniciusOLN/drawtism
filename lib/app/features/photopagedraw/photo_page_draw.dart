@@ -30,6 +30,7 @@ class PhotoPageDraw extends StatelessWidget {
     );
     final controller = Get.find<PhotoPageDrawController>();
     controller.currentTime = getCurrentTime();
+    controller.speak(level.title);
     return Scaffold(
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
