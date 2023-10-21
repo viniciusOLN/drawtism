@@ -14,6 +14,7 @@ import 'package:drawtism/app/global/widgets/default_button.dart';
 import 'package:drawtism/app/global/widgets/default_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 
 import 'widgets/paint_module.dart';
@@ -33,7 +34,6 @@ class DrawPage extends StatelessWidget {
     Level currentLevel = level['level'].listTasks[0] as Level;
     currentLevel.attempts = 0;
     controllerReference.currentLevel = level["position"];
-
     // print(level["level"].listTasks[level["position"]].title);
 
     return Scaffold(
@@ -63,6 +63,9 @@ class DrawPage extends StatelessWidget {
         id: 'board',
         builder: (_) {
           currentLevel.initialTime = getCurrentTime();
+          controllerReference.speak(
+            level["level"].listTasks[controllerReference.currentDraw].title,
+          );
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

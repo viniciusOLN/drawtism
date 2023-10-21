@@ -7,13 +7,13 @@ class ConfigPageController extends GetxController {
 
   @override
   void onInit() async {
-    super.onInit();
     isPlaying = await getAudio();
     setButtonTitle();
+    super.onInit();
   }
 
   void setButtonTitle() {
-    titleButton = !isPlaying ? "Pausar Música" : "Tocar Música";
+    titleButton = isPlaying ? "Pausar Música" : "Tocar Música";
   }
 
   void setAudio(bool state) async {
@@ -23,7 +23,7 @@ class ConfigPageController extends GetxController {
 
   Future<bool> getAudio() async {
     final prefs = await SharedPreferences.getInstance();
-    bool isPlaying = prefs.getBool("music") ?? false;
+    bool isPlaying = prefs.getBool("music") ?? true;
     return isPlaying;
   }
 }

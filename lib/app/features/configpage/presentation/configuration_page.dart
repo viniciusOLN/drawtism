@@ -28,14 +28,20 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
   );
   final controller = Get.find<MusicController>();
 
-  void teste() async {
+  void setInitialAudioValue() async {
     controllerConfig.isPlaying = await controllerConfig.getAudio();
   }
 
   @override
   void initState() {
-    controllerConfig.setButtonTitle();
-    teste();
+    if (!controller.isPlaying) {
+      controllerConfig.titleButton = "Pausar Música";
+    } else {
+      controllerConfig.titleButton = "Tocar Música";
+    }
+    setState(() {
+      controllerConfig.titleButton;
+    });
     super.initState();
   }
 
@@ -85,10 +91,11 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                         controllerConfig.isPlaying = false;
                         setState(() {
                           controllerConfig.titleButton = "Tocar Música";
+                          controllerConfig.isPlaying;
                         });
                       } else {
                         controllerConfig.setAudio(true);
-                        if (!controller.isPlaying) {
+                        if (controller.isPlaying) {
                           controller.playThemeSong();
                         } else {
                           controller.playerThemeSong.resume();
@@ -96,6 +103,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                         controllerConfig.isPlaying = true;
                         setState(() {
                           controllerConfig.titleButton = "Pausar Música";
+                          controllerConfig.isPlaying;
                         });
                       }
                     },

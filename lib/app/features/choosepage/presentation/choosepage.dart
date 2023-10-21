@@ -17,22 +17,26 @@ import '../../../global/widgets/default_button.dart';
 class ChooseMode extends StatelessWidget {
   const ChooseMode({super.key});
 
-  void redirectPhotoPage() async {
+  Future<bool> verifyEmailConfig() async {
     final prefs = await SharedPreferences.getInstance();
 
     String username = prefs.getString("username") ?? "";
     String email = prefs.getString("email") ?? "";
 
-    if (username == "" || email == "") {
-      Get.toNamed("/emailconfig");
-    } else {
-      Get.to(
-        () => LevelPage(
-          levelsPhotoPhage: levelsPhoto,
-          isDrawPage: false,
-        ),
-      );
-    }
+    return (username == "" || email == "");
+  }
+
+  void redirectTasks() async {
+    await verifyEmailConfig()
+        ? Get.toNamed("/emailconfig")
+        : Get.to(() => LevelPage(levels: levels, isDrawPage: true));
+  }
+
+  void redirectPhoto() async {
+    await verifyEmailConfig()
+        ? Get.toNamed("/emailconfig")
+        : Get.to(
+            () => LevelPage(levelsPhotoPhage: levelsPhoto, isDrawPage: false));
   }
 
   @override
@@ -71,12 +75,7 @@ class ChooseMode extends StatelessWidget {
                 children: [
                   CustomButton(
                     onPressed: () {
-                      Get.to(
-                        () => LevelPage(
-                          levels: levels,
-                          isDrawPage: true,
-                        ),
-                      );
+                      redirectTasks();
                     },
                     title: 'Completar Formas',
                     style: TextStyles.blueTextButtonStyle,
@@ -101,7 +100,7 @@ class ChooseMode extends StatelessWidget {
                   SizedBox(height: width * 0.04),
                   CustomButton(
                     onPressed: () {
-                      redirectPhotoPage();
+                      redirectPhoto();
                     },
                     title: 'Tirar Foto',
                     style: TextStyles.blueTextButtonStyle,
