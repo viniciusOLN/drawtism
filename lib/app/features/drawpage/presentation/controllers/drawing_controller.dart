@@ -53,9 +53,9 @@ class DrawingPageController extends GetxController {
   FlutterTts flutterTts = FlutterTts();
 
   void nextDraw(BuildContext context) async {
-    await flutterTts.stop();
     changeButton(false);
     await save(keyToImage);
+    await flutterTts.stop();
     if (currentDraw == limitPerLevel) {
       // ignore: use_build_context_synchronously
       Navigator.push(
