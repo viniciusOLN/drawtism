@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:drawtism/app/features/choosepage/presentation/choosepage.dart';
 import 'package:drawtism/app/features/drawpage/domain/entities/email_sender.dart';
 import 'package:drawtism/app/features/levelpage/presentation/levelpage.dart';
 import 'package:drawtism/app/features/photopage/previewpage/presentation/preview_page.dart';
@@ -40,6 +41,22 @@ class PhotoController extends GetxController {
     }
   }
 
+  void showPreviewBalance(BuildContext context, File file) async {
+    file = await Get.to(PreviewPage(file: file));
+    if (file != null) {
+      Uint8List bytes = file.readAsBytesSync();
+      sendEmailBalance(base64Encode(bytes));
+      Get.to(() => ChooseMode());
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Imagem salva com sucesso!'),
+          backgroundColor: Colors.green,
+        ),
+      );
+    }
+  }
+
   void sendEmail(String image, String imageToComparate) async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -62,6 +79,29 @@ class PhotoController extends GetxController {
       contents: [
         Content("text/html",
             "Atividade feita a mão.<br><br> Tempo de Início da atividade: $innitialTime <br><br> Tempo de finalização da atividade: ${getCurrentTime()}"),
+      ],
+    );
+
+    emailSender.sendEmail();
+  }
+
+  void sendEmailBalance(String image) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    String username = prefs.getString("username") ?? "";
+    String email = prefs.getString("email") ?? "";
+
+    EmailSender emailSender = EmailSender(
+      subject: "Aquarela Autista - $username ${DateTime.now()}",
+      toAddress: email,
+      attachments: [
+        Attachment(
+          image,
+          "Nivelamento_$username.jpg",
+        ),
+      ],
+      contents: [
+        Content("text/html", "Imagem de nivelamento."),
       ],
     );
 

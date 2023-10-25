@@ -1,3 +1,4 @@
+import 'package:drawtism/app/features/balancelevelpage/balance_level_page.dart';
 import 'package:drawtism/app/features/homepage/presentation/homepage.dart';
 import 'package:drawtism/app/features/levelpage/presentation/levelpage.dart';
 import 'package:drawtism/app/global/utils/colors.dart';
@@ -112,6 +113,12 @@ class ChooseMode extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Get.to(() => BalanceLevelPage());
+        },
+        label: Text("Nivelamento"),
       ),
     );
   }
