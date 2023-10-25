@@ -11,7 +11,7 @@
         </intent>
     </queries>
     <application
-        android:label="drawtism"
+        android:label="Aquarela Autista"
         android:name="${applicationName}"
         android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">

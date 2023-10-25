@@ -40,6 +40,12 @@ class ChooseMode extends StatelessWidget {
             () => LevelPage(levelsPhotoPhage: levelsPhoto, isDrawPage: false));
   }
 
+  void redirectBalance() async {
+    await verifyEmailConfig()
+        ? Get.toNamed("/emailconfig")
+        : Get.to(() => BalanceLevelPage());
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = DeviceUtils.width(context);
@@ -116,7 +122,7 @@ class ChooseMode extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Get.to(() => BalanceLevelPage());
+          redirectBalance();
         },
         label: Text("Nivelamento"),
       ),
