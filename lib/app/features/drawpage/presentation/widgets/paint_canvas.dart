@@ -25,7 +25,7 @@ class PaintCanvas extends StatefulWidget {
 class _PaintCanvasState extends State<PaintCanvas> {
   Paint _currentPaintSettings = Paint()
     ..strokeWidth = 6
-    ..color = Colors.transparent;
+    ..color = Colors.black;
 
   CanvasPath _newPath = CanvasPath(
     paint: Paint()

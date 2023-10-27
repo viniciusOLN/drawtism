@@ -129,7 +129,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                     },
                     title: "Configurar Email",
                     style: TextStyles.whiteTextButtonStyle,
-                    color: ColorStyle.buttonBlue,
+                    color: ColorStyle.buttonGreen,
                   ),
                 ],
               ),

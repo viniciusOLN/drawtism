@@ -34,23 +34,23 @@ class ColumnButtons extends StatelessWidget {
           ),
           ColorButton(
             tag: 'laranja',
-            color: Color.fromARGB(255, 215, 86, 11),
+            color: Color.fromARGB(253, 253, 150, 1),
             controller: controller,
           ),
           ColorButton(
             tag: 'azul',
-            color: Color.fromARGB(255, 0, 26, 255),
+            color: Color.fromRGBO(81, 175, 247, 1),
             controller: controller,
           ),
           ColorButton(
             tag: 'verde',
-            color: Color.fromARGB(255, 55, 245, 2),
+            color: const Color.fromRGBO(120, 157, 99, 1),
             controller: controller,
           ),
           TextButton(
             onPressed: () {
               Paint newPaint = Paint()..blendMode = BlendMode.clear;
-              newPaint.strokeWidth = 10;
+              newPaint..strokeWidth = 200;
               BlocProvider.of<SettingsBloc>(context).add(
                 SettingsChanged(newPaint),
               );

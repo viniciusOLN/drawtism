@@ -39,7 +39,7 @@ class Homepage extends StatelessWidget {
                     },
                     title: 'JOGAR',
                     style: TextStyles.whiteTextButtonStyle,
-                    color: ColorStyle.buttonBlue,
+                    color: ColorStyle.buttonGreen,
                     icon: CustomIcon(),
                   ),
                   SizedBox(height: width * 0.04),
@@ -48,8 +48,25 @@ class Homepage extends StatelessWidget {
                       Navigator.pushNamed(context, '/config');
                     },
                     title: 'Configurações',
-                    style: TextStyles.blueTextButtonStyle,
-                    color: ColorStyle.buttonWhite,
+                    style: TextStyles.whiteTextButtonStyle,
+                    color: ColorStyle.buttonGreen,
+                    icon: const Icon(
+                      Icons.settings,
+                      size: 22,
+                      color: Colors.white,
+                      shadows: <Shadow>[
+                        Shadow(
+                          offset: Offset(2.0, 2.0),
+                          blurRadius: 8.0,
+                          color: Color.fromARGB(100, 0, 0, 0),
+                        ),
+                        Shadow(
+                          offset: Offset(2.0, 2.0),
+                          blurRadius: 8.0,
+                          color: Color.fromARGB(100, 0, 0, 0),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

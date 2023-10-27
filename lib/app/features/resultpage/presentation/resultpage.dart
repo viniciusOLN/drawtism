@@ -109,7 +109,7 @@ class ResultPage extends StatelessWidget {
                     },
                     title: 'Clique Aqui',
                     style: TextStyles.whiteTextButtonStyle,
-                    color: ColorStyle.buttonBlue,
+                    color: ColorStyle.buttonGreen,
                   ),
                   SizedBox(height: width * 0.02),
                   CustomButton(

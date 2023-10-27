@@ -31,10 +31,7 @@ class _ColorButtonState extends State<ColorButton> {
         mini: true,
         backgroundColor: widget.color,
         onPressed: () {
-          if (!widget.controller.listUsedColors.contains(widget.tag)) {
-            widget.controller.countUsedColors++;
-            widget.controller.listUsedColors.add(widget.tag);
-          }
+          widget.controller.colorButton = widget.tag;
 
           Paint newPaint = Paint()
             ..color = widget.color

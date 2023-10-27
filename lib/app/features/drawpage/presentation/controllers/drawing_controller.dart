@@ -26,7 +26,9 @@ class DrawingPageController extends GetxController {
   int countUsedColors = 0;
   int limitPerLevel = 2;
   bool isPainted = false;
-  List listUsedColors = [];
+  Set listUsedColors = {};
+  String colorButton = "";
+  String currentColorSelected = "";
   List<String> listPathImages = [];
   List<String> listIdentifyTask = [];
   Map<int, dynamic> attempts = {
@@ -64,7 +66,7 @@ class DrawingPageController extends GetxController {
           builder: (context) => ResultPage(
             result: InfosResult(
               attempts: attempts,
-              usedColors: countUsedColors,
+              usedColors: listUsedColors.length,
               nextLevel: currentLevel + 1,
             ),
           ),

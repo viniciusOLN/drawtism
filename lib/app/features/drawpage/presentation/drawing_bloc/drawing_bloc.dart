@@ -22,8 +22,8 @@ class DrawingBloc extends Bloc<DrawingEvent, DrawingState> {
     DrawingEvent event,
   ) async* {
     if (event is UpdateDrawing) {
-      if (_drawing.canvasPaths.isNotEmpty &&
-          controller.listUsedColors.isNotEmpty) {
+      if (_drawing.canvasPaths.isNotEmpty) {
+        controller.listUsedColors.add(controller.colorButton);
         controller.changeButton(true);
       }
       yield DrawingLoading(_drawing.canvasPaths);

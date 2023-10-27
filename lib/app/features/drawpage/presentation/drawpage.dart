@@ -38,6 +38,7 @@ class DrawPage extends StatelessWidget {
     Level currentLevel = level['level'].listTasks[0] as Level;
     currentLevel.attempts = 0;
     controllerReference.currentLevel = level["position"];
+    controllerReference.colorButton = "preto";
     // print(level["level"].listTasks[level["position"]].title);
 
     return Scaffold(
@@ -76,10 +77,15 @@ class DrawPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: width * 0.190),
-              Text(
-                level["level"].listTasks[controllerReference.currentDraw].title,
-                style: TextStyles.blackTextGeneric,
-                textAlign: TextAlign.center,
+              Padding(
+                padding: const EdgeInsets.all(5),
+                child: Text(
+                  level["level"]
+                      .listTasks[controllerReference.currentDraw]
+                      .title,
+                  style: TextStyles.blackTextGeneric,
+                  textAlign: TextAlign.center,
+                ),
               ),
               WidgetToImage(builder: (key) {
                 controllerReference.keyToImage = key;
@@ -147,7 +153,7 @@ class DrawPage extends StatelessWidget {
                         title: 'Continuar',
                         style: TextStyles.whiteTextButtonStyle,
                         color: controllerReference.isPainted
-                            ? ColorStyle.buttonBlue
+                            ? ColorStyle.buttonGreen
                             : ColorStyle.buttonDisabled,
                       ),
                     ],
