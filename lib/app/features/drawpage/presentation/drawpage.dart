@@ -39,6 +39,7 @@ class DrawPage extends StatelessWidget {
     currentLevel.attempts = 0;
     controllerReference.currentLevel = level["position"];
     controllerReference.colorButton = "preto";
+    controllerReference.selectedColor("preto", Colors.black);
     // print(level["level"].listTasks[level["position"]].title);
 
     return Scaffold(

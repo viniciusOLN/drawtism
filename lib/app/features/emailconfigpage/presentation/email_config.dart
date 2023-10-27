@@ -1,5 +1,7 @@
 import 'package:drawtism/app/features/choosepage/presentation/choosepage.dart';
+import 'package:drawtism/app/features/configpage/presentation/configuration_page.dart';
 import 'package:drawtism/app/features/emailconfigpage/presentation/controllers/config_email_controller.dart';
+import 'package:drawtism/app/features/homepage/presentation/homepage.dart';
 import 'package:drawtism/app/global/utils/colors.dart';
 import 'package:drawtism/app/global/utils/deviceUtils.dart';
 import 'package:drawtism/app/global/utils/text_styles.dart';
@@ -53,7 +55,7 @@ class _ConfigEmailPageState extends State<ConfigEmailPage> {
           ),
           color: Theme.of(context).iconTheme.color,
           onPressed: () {
-            Get.to(() => const ChooseMode());
+            Get.to(() => ConfigurationPage());
           },
         ),
       ),

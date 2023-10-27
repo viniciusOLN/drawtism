@@ -119,8 +119,8 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                             color: Colors.red,
                             size: 30,
                           ),
-                    style: TextStyles.blueTextButtonStyle,
-                    color: ColorStyle.buttonWhite,
+                    style: TextStyles.whiteTextButtonStyle,
+                    color: ColorStyle.buttonGreen,
                   ),
                   SizedBox(height: width * 0.04),
                   CustomButton(

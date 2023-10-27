@@ -31,5 +31,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   '/result': (context) => ResultPage(),
   '/photo': (context) => PhotoPage(),
   '/config': (context) => ConfigurationPage(),
-  '/emailconfig': (context) => const ConfigEmailPage(),
+  '/emailconfig': (context) => ConfigEmailPage(),
 };
