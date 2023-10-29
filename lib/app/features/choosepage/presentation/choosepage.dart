@@ -120,12 +120,12 @@ class ChooseMode extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          redirectBalance();
-        },
-        label: Text("Nivelamento"),
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: () {
+      //     redirectBalance();
+      //   },
+      //   label: Text("Nivelamento"),
+      // ),
     );
   }
 }
