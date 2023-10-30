@@ -85,7 +85,7 @@ class PhotoPageDraw extends StatelessWidget {
                 ),
                 SizedBox(height: width * 0.4),
                 CustomContainer(
-                  width: width * 0.81,
+                  width: width * 0.86,
                   children: [
                     CustomButton(
                       onPressed: () {

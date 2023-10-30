@@ -80,7 +80,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
               ),
               SizedBox(height: width * 0.15),
               CustomContainer(
-                width: width * 0.65,
+                width: width * 0.70,
                 children: [
                   SizedBox(height: width * 0.04),
                   CustomButton(
@@ -111,13 +111,13 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                     icon: controllerConfig.isPlaying
                         ? const Icon(
                             Icons.pause,
-                            color: Colors.red,
-                            size: 30,
+                            color: Colors.white,
+                            size: 20,
                           )
                         : const Icon(
                             Icons.play_arrow,
-                            color: Colors.red,
-                            size: 30,
+                            color: Colors.white,
+                            size: 20,
                           ),
                     style: TextStyles.whiteTextButtonStyle,
                     color: ColorStyle.buttonGreen,

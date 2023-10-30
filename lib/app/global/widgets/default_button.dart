@@ -52,8 +52,8 @@ class CustomButton extends StatelessWidget {
             imageUrl != null
                 ? Image.asset(
                     imageUrl ?? '',
-                    width: (width * 0.12),
-                    height: (width * 0.12),
+                    width: (width * 0.10),
+                    height: (width * 0.10),
                   )
                 : Container(),
             icon ?? Container(),

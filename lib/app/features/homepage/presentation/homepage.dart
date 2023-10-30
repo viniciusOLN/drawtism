@@ -31,7 +31,7 @@ class Homepage extends StatelessWidget {
               ),
               SizedBox(height: width * 0.15),
               CustomContainer(
-                width: width * 0.65,
+                width: width * 0.70,
                 children: [
                   CustomButton(
                     onPressed: () {

@@ -78,7 +78,7 @@ class ChooseMode extends StatelessWidget {
                   text: "Escolha um modo", style: TextStyles.defaultStyle),
               SizedBox(height: width * 0.12),
               CustomContainer(
-                width: width * 0.82,
+                width: width * 0.86,
                 children: [
                   CustomButton(
                     onPressed: () {
