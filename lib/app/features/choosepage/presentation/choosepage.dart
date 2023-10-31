@@ -22,9 +22,7 @@ class ChooseMode extends StatelessWidget {
     final prefs = await SharedPreferences.getInstance();
 
     String username = prefs.getString("username") ?? "";
-    String email = prefs.getString("email") ?? "";
-
-    return (username == "" || email == "");
+    return (username == "");
   }
 
   void redirectTasks() async {

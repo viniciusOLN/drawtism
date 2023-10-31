@@ -127,7 +127,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                     onPressed: () {
                       Get.toNamed("/emailconfig");
                     },
-                    title: "Configurar Email",
+                    title: "Configurar Nome",
                     style: TextStyles.whiteTextButtonStyle,
                     color: ColorStyle.buttonGreen,
                   ),

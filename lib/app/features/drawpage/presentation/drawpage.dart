@@ -73,97 +73,95 @@ class DrawPage extends StatelessWidget {
           controllerReference.speak(
             level["level"].listTasks[controllerReference.currentDraw].title,
           );
-          return SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: width * 0.190),
-                Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Text(
-                    level["level"]
-                        .listTasks[controllerReference.currentDraw]
-                        .title,
-                    style: TextStyles.blackTextGeneric,
-                    textAlign: TextAlign.center,
-                  ),
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: width * 0.190),
+              Padding(
+                padding: const EdgeInsets.all(5),
+                child: Text(
+                  level["level"]
+                      .listTasks[controllerReference.currentDraw]
+                      .title,
+                  style: TextStyles.blackTextGeneric,
+                  textAlign: TextAlign.center,
                 ),
-                WidgetToImage(builder: (key) {
-                  controllerReference.keyToImage = key;
-                  return Stack(
-                    alignment: AlignmentDirectional.center,
+              ),
+              WidgetToImage(builder: (key) {
+                controllerReference.keyToImage = key;
+                return Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    Image.asset(
+                      level["level"]
+                          .listTasks[controllerReference.currentDraw]
+                          .urlImage,
+                    ),
+                    PaintModule(),
+                  ],
+                );
+              }),
+              GetBuilder<DrawingPageController>(
+                id: 'color',
+                builder: (_) {
+                  return Text(
+                    controllerReference.currentTextColor,
+                    style: TextStyles.blueTextGeneric.copyWith(
+                      color: controllerReference.currentColor,
+                    ),
+                  );
+                },
+              ),
+              SizedBox(height: width * 0.060),
+              ColumnButtons(controller: controllerReference),
+              SizedBox(height: width * 0.090),
+              CustomContainer(
+                width: width * 0.81,
+                children: [
+                  CustomButton(
+                    onPressed: () {
+                      currentLevel.attempts = (currentLevel.attempts! + 1);
+                      controllerReference.registerAttempt();
+                      BlocProvider.of<DrawingBloc>(context).add(
+                        Undo(),
+                      );
+                    },
+                    title: 'Apagar',
+                    style: TextStyles.whiteTextButtonStyle,
+                    color: ColorStyle.buttonRed,
+                  ),
+                ],
+              ),
+              SizedBox(height: width * 0.025),
+              GetBuilder<DrawingPageController>(
+                id: 'nextButton',
+                builder: (_) {
+                  return CustomContainer(
+                    width: width * 0.81,
                     children: [
-                      Image.asset(
-                        level["level"]
-                            .listTasks[controllerReference.currentDraw]
-                            .urlImage,
+                      CustomButton(
+                        onPressed: controllerReference.isPainted
+                            ? () {
+                                controllerReference.infos(currentLevel);
+                                controllerReference.nextDraw(context);
+                                BlocProvider.of<DrawingBloc>(context).add(
+                                  Undo(),
+                                );
+                                currentLevel.attempts = 0;
+                              }
+                            : () {},
+                        title: 'Continuar',
+                        style: TextStyles.whiteTextButtonStyle,
+                        color: controllerReference.isPainted
+                            ? ColorStyle.buttonGreen
+                            : ColorStyle.buttonDisabled,
                       ),
-                      PaintModule(),
                     ],
                   );
-                }),
-                GetBuilder<DrawingPageController>(
-                  id: 'color',
-                  builder: (_) {
-                    return Text(
-                      controllerReference.currentTextColor,
-                      style: TextStyles.blueTextGeneric.copyWith(
-                        color: controllerReference.currentColor,
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(height: width * 0.060),
-                ColumnButtons(controller: controllerReference),
-                SizedBox(height: width * 0.090),
-                CustomContainer(
-                  width: width * 0.81,
-                  children: [
-                    CustomButton(
-                      onPressed: () {
-                        currentLevel.attempts = (currentLevel.attempts! + 1);
-                        controllerReference.registerAttempt();
-                        BlocProvider.of<DrawingBloc>(context).add(
-                          Undo(),
-                        );
-                      },
-                      title: 'Apagar',
-                      style: TextStyles.whiteTextButtonStyle,
-                      color: ColorStyle.buttonRed,
-                    ),
-                  ],
-                ),
-                SizedBox(height: width * 0.025),
-                GetBuilder<DrawingPageController>(
-                  id: 'nextButton',
-                  builder: (_) {
-                    return CustomContainer(
-                      width: width * 0.81,
-                      children: [
-                        CustomButton(
-                          onPressed: controllerReference.isPainted
-                              ? () {
-                                  controllerReference.infos(currentLevel);
-                                  controllerReference.nextDraw(context);
-                                  BlocProvider.of<DrawingBloc>(context).add(
-                                    Undo(),
-                                  );
-                                  currentLevel.attempts = 0;
-                                }
-                              : () {},
-                          title: 'Continuar',
-                          style: TextStyles.whiteTextButtonStyle,
-                          color: controllerReference.isPainted
-                              ? ColorStyle.buttonGreen
-                              : ColorStyle.buttonDisabled,
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ],
-            ),
+                },
+              ),
+            ],
           );
         },
       ),

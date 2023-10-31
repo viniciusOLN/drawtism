@@ -123,9 +123,9 @@ class DrawingPageController extends GetxController {
     final prefs = await SharedPreferences.getInstance();
 
     String username = prefs.getString("username") ?? "";
-    String email = prefs.getString("email") ?? "";
+    //String email = prefs.getString("email") ?? "";
 
-    if (username.isEmpty || email.isEmpty) {
+    if (username.isEmpty) {
       return;
     }
 
@@ -138,7 +138,7 @@ class DrawingPageController extends GetxController {
 
     EmailSender emailSender = EmailSender(
       subject: "Aquarela Autista - $username ${DateTime.now()}",
-      toAddress: email,
+      toAddress: "autistaaquarela@gmail.com",
       attachments: List.generate(
         listPathImages.length,
         (index) => Attachment(

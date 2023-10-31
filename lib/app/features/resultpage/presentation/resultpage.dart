@@ -32,7 +32,7 @@ class ResultPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset("assets/images/logo.png"),
-              SizedBox(height: width * 0.030),
+              //SizedBox(height: width * 0.010),
               CustomText(
                 text: "Você completou o desafio",
                 style: TextStyles.defaultStyle,
@@ -41,12 +41,12 @@ class ResultPage extends StatelessWidget {
                 text: "PARABÉNS!!!!!",
                 style: TextStyles.defaultStyle,
               ),
-              SizedBox(height: width * 0.06),
+              SizedBox(height: width * 0.04),
               CustomText(
                 text: "Quantidade de tentativas",
                 style: TextStyles.defaultStyle,
               ),
-              SizedBox(height: width * 0.06),
+              SizedBox(height: width * 0.04),
               CustomText(
                 text: "1ª tarefa",
                 style: TextStyles.defaultStyle,
@@ -55,7 +55,7 @@ class ResultPage extends StatelessWidget {
                 text: result!.attempts[1].toString(),
                 style: TextStyles.defaultStyle,
               ),
-              SizedBox(height: width * 0.04),
+              SizedBox(height: width * 0.02),
               CustomText(
                 text: "2ª tarefa",
                 style: TextStyles.defaultStyle,
@@ -64,7 +64,7 @@ class ResultPage extends StatelessWidget {
                 text: result!.attempts[2].toString(),
                 style: TextStyles.defaultStyle,
               ),
-              SizedBox(height: width * 0.04),
+              SizedBox(height: width * 0.02),
               CustomText(
                 text: "3ª tarefa",
                 style: TextStyles.defaultStyle,
@@ -73,7 +73,7 @@ class ResultPage extends StatelessWidget {
                 text: result!.attempts[3].toString(),
                 style: TextStyles.defaultStyle,
               ),
-              SizedBox(height: width * 0.04),
+              SizedBox(height: width * 0.02),
               CustomText(
                 text: "Cores Usadas",
                 style: TextStyles.defaultStyle,
@@ -82,7 +82,7 @@ class ResultPage extends StatelessWidget {
                 text: result!.usedColors.toString(),
                 style: TextStyles.defaultStyle,
               ),
-              SizedBox(height: width * 0.04),
+              SizedBox(height: width * 0.02),
               CustomText(
                 text: "Deseja jogar outro nível?",
                 style: TextStyles.defaultStyle,

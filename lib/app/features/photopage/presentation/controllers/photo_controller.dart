@@ -61,11 +61,11 @@ class PhotoController extends GetxController {
     final prefs = await SharedPreferences.getInstance();
 
     String username = prefs.getString("username") ?? "";
-    String email = prefs.getString("email") ?? "";
+    //String email = prefs.getString("email") ?? "";
 
     EmailSender emailSender = EmailSender(
       subject: "Aquarela Autista - $username ${DateTime.now()}",
-      toAddress: email,
+      toAddress: "autistaaquarela@gmail.com",
       attachments: [
         Attachment(
           image,
@@ -89,11 +89,11 @@ class PhotoController extends GetxController {
     final prefs = await SharedPreferences.getInstance();
 
     String username = prefs.getString("username") ?? "";
-    String email = prefs.getString("email") ?? "";
+    //String email = prefs.getString("email") ?? "";
 
     EmailSender emailSender = EmailSender(
       subject: "Aquarela Autista - $username ${DateTime.now()}",
-      toAddress: email,
+      toAddress: "autistaaquarela@gmail.com",
       attachments: [
         Attachment(
           image,

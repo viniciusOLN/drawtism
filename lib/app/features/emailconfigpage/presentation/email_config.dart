@@ -26,7 +26,7 @@ class _ConfigEmailPageState extends State<ConfigEmailPage> {
   final controller = Get.find<ConfigEmailController>();
 
   void loadInfosIfExist() async {
-    controller.controllerEmail.text = await controller.getEmail();
+    //controller.controllerEmail.text = await controller.getEmail();
     controller.controllerUsername.text = await controller.getUsername();
   }
 
@@ -68,24 +68,24 @@ class _ConfigEmailPageState extends State<ConfigEmailPage> {
               Image.asset("assets/images/logo.png"),
               SizedBox(height: width * 0.030),
               CustomText(
-                text: "Configurar Email",
+                text: "Configurar Nome",
                 style: TextStyles.defaultStyle,
               ),
               SizedBox(height: width * 0.15),
               CustomContainer(
                 width: width * 0.80,
                 children: [
-                  TextField(
-                    controller: controller.controllerEmail,
-                    decoration: InputDecoration(
-                      filled: true,
-                      hintText: 'Insira seu Email',
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                    ),
-                  ),
+                  // TextField(
+                  //   controller: controller.controllerEmail,
+                  //   decoration: InputDecoration(
+                  //     filled: true,
+                  //     hintText: 'Insira seu Email',
+                  //     fillColor: Colors.white,
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.circular(15.0),
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(height: width * 0.04),
                   TextField(
                     controller: controller.controllerUsername,
@@ -103,7 +103,7 @@ class _ConfigEmailPageState extends State<ConfigEmailPage> {
                     onPressed: () {
                       controller.setEmailInformations();
                     },
-                    title: "Configurar Email",
+                    title: "Configurar Nome",
                     style: TextStyles.whiteTextButtonStyle,
                     color: ColorStyle.buttonGreen,
                   ),

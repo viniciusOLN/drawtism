@@ -7,23 +7,23 @@ class ConfigEmailController extends GetxController {
   TextEditingController controllerUsername = TextEditingController();
 
   void setEmailInformations() async {
-    if (controllerEmail.text.isEmpty || controllerUsername.text.isEmpty) {
+    if (controllerUsername.text.isEmpty) {
       return;
     }
 
     final prefs = await SharedPreferences.getInstance();
 
-    await prefs.setString("email", controllerEmail.text);
+    //await prefs.setString("email", controllerEmail.text);
     await prefs.setString("username", controllerUsername.text);
 
     Get.toNamed("/mode");
   }
 
-  Future<String> getEmail() async {
-    final prefs = await SharedPreferences.getInstance();
+  // Future<String> getEmail() async {
+  //   final prefs = await SharedPreferences.getInstance();
 
-    return prefs.getString("email") ?? "";
-  }
+  //   return prefs.getString("email") ?? "";
+  // }
 
   Future<String> getUsername() async {
     final prefs = await SharedPreferences.getInstance();
