@@ -1,4 +1,5 @@
 import 'package:drawtism/app/features/drawpage/presentation/controllers/drawing_controller.dart';
+import 'package:drawtism/app/features/levelpage/presentation/levelpage.dart';
 import 'package:drawtism/app/features/resultpage/presentation/domain/entities/result_entity.dart';
 import 'package:drawtism/app/global/utils/colors.dart';
 import 'package:drawtism/app/global/utils/deviceUtils.dart';
@@ -105,7 +106,12 @@ class ResultPage extends StatelessWidget {
                         );
                         return;
                       }
-                      Navigator.pushNamed(context, '/level');
+                      Get.to(
+                        () => LevelPage(
+                          levels: levels,
+                          isDrawPage: true,
+                        ),
+                      );
                     },
                     title: 'Clique Aqui',
                     style: TextStyles.whiteTextButtonStyle,

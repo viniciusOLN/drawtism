@@ -137,7 +137,7 @@ class DrawingPageController extends GetxController {
     );
 
     EmailSender emailSender = EmailSender(
-      subject: "Aquarela Autista - $username ${DateTime.now()}",
+      subject: "Aquarela Autista - $username",
       toAddress: "autistaaquarela@gmail.com",
       attachments: List.generate(
         listPathImages.length,

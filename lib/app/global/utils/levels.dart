@@ -62,26 +62,26 @@ List<Levels> levels = [
       ),
     ],
   ),
-  Levels(
-    isMadeIt: false,
-    listTasks: [
-      Level(
-        identifyTask: "At4-L1",
-        urlImage: "assets/images/challenges/challenge_4_1.png",
-        title: 'Cubra as linhas e forme o pentágono!',
-      ),
-      Level(
-        identifyTask: "At4-L2",
-        urlImage: "assets/images/challenges/challenge_4_2.png",
-        title: 'Cubra as linhas e forme o pentágono igual ao anterior!',
-      ),
-      Level(
-        identifyTask: "At4-L3",
-        urlImage: "assets/images/challenges/challenge_4_3.png",
-        title: 'Ligue os pontos e forme o pentágono!',
-      ),
-    ],
-  ),
+  // Levels(
+  //   isMadeIt: false,
+  //   listTasks: [
+  //     Level(
+  //       identifyTask: "At4-L1",
+  //       urlImage: "assets/images/challenges/challenge_4_1.png",
+  //       title: 'Cubra as linhas e forme o pentágono!',
+  //     ),
+  //     Level(
+  //       identifyTask: "At4-L2",
+  //       urlImage: "assets/images/challenges/challenge_4_2.png",
+  //       title: 'Cubra as linhas e forme o pentágono igual ao anterior!',
+  //     ),
+  //     Level(
+  //       identifyTask: "At4-L3",
+  //       urlImage: "assets/images/challenges/challenge_4_3.png",
+  //       title: 'Ligue os pontos e forme o pentágono!',
+  //     ),
+  //   ],
+  // ),
   Levels(
     isMadeIt: false,
     listTasks: [
@@ -162,44 +162,44 @@ List<Levels> levels = [
       ),
     ],
   ),
-  Levels(
-    isMadeIt: false,
-    listTasks: [
-      Level(
-        identifyTask: "At9-L1",
-        urlImage: "assets/images/challenges/challenge_9_1.png",
-        title: 'Cubra as linhas e forme a estrelinha!',
-      ),
-      Level(
-        identifyTask: "At9-L2",
-        urlImage: "assets/images/challenges/challenge_9_2.png",
-        title: 'Ligue as linhas e forme uma estrelinha igual a anterior!',
-      ),
-      Level(
-        identifyTask: "At9-L3",
-        urlImage: "assets/images/challenges/challenge_9_3.png",
-        title: 'Ligue os pontos e forme uma estrelinha igual a anterior!',
-      ),
-    ],
-  ),
-  Levels(
-    isMadeIt: false,
-    listTasks: [
-      Level(
-        identifyTask: "At10-L1",
-        urlImage: "assets/images/challenges/challenge_10_1.png",
-        title: 'Cubra as linhas e forme um triângulo!',
-      ),
-      Level(
-        identifyTask: "At10-L2",
-        urlImage: "assets/images/challenges/challenge_10_2.png",
-        title: 'Ligue as linhas e forme um triângulo igual a anterior!',
-      ),
-      Level(
-        identifyTask: "At10-L3",
-        urlImage: "assets/images/challenges/challenge_10_3.png",
-        title: 'Ligue os pontos e forme um triângulo igual a anterior!',
-      ),
-    ],
-  ),
+  // Levels(
+  //   isMadeIt: false,
+  //   listTasks: [
+  //     Level(
+  //       identifyTask: "At9-L1",
+  //       urlImage: "assets/images/challenges/challenge_9_1.png",
+  //       title: 'Cubra as linhas e forme a estrelinha!',
+  //     ),
+  //     Level(
+  //       identifyTask: "At9-L2",
+  //       urlImage: "assets/images/challenges/challenge_9_2.png",
+  //       title: 'Ligue as linhas e forme uma estrelinha igual a anterior!',
+  //     ),
+  //     Level(
+  //       identifyTask: "At9-L3",
+  //       urlImage: "assets/images/challenges/challenge_9_3.png",
+  //       title: 'Ligue os pontos e forme uma estrelinha igual a anterior!',
+  //     ),
+  //   ],
+  // ),
+  // Levels(
+  //   isMadeIt: false,
+  //   listTasks: [
+  //     Level(
+  //       identifyTask: "At10-L1",
+  //       urlImage: "assets/images/challenges/challenge_10_1.png",
+  //       title: 'Cubra as linhas e forme um triângulo!',
+  //     ),
+  //     Level(
+  //       identifyTask: "At10-L2",
+  //       urlImage: "assets/images/challenges/challenge_10_2.png",
+  //       title: 'Ligue as linhas e forme um triângulo igual a anterior!',
+  //     ),
+  //     Level(
+  //       identifyTask: "At10-L3",
+  //       urlImage: "assets/images/challenges/challenge_10_3.png",
+  //       title: 'Ligue os pontos e forme um triângulo igual a anterior!',
+  //     ),
+  //   ],
+  // ),
 ];
